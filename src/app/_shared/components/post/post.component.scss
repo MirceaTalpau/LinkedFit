@@ -38,11 +38,16 @@
   .action-item {
     margin-left: .5em;
     cursor: pointer;
+    color: #007bff;
+    transition: transform 0.3s ease; /* Add transition property for smooth animation */
+
 }
 
 .action-item:hover {
-    color: #007bff;
-    }
+  color: #007bff;
+  transition-delay: 1s; /* Add a delay of 1 second before the transition starts */
+  transform: scale(1.2); /* Scale the icon to 1.2 times its original size */
+}
 
 
 .profileIcon{
@@ -58,4 +63,8 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     background-color: #f5f5f5;
+}
+
+a{
+  padding-left: 5px;
 }

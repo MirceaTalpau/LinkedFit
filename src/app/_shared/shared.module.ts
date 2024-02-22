@@ -8,6 +8,8 @@ import { CarouselModule } from 'primeng/carousel';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import {ImageModule} from 'primeng/image';
+import { DividerModule } from 'primeng/divider';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatCardModule} from '@angular/material/card';
@@ -33,7 +35,9 @@ import { PostComponent } from './components/post/post.component';
     MatMenuModule,
     MatCardModule,
     MatIconModule,
-    CarouselModule
+    CarouselModule,
+    DividerModule,
+    ImageModule
   ],
   exports: [
     PageNotFoundComponent,

@@ -1,4 +1,5 @@
 export interface Post{
+    postId: number;
     userName: string;
     userIconUrl: string;
     postImagesUrls : string[] | null;

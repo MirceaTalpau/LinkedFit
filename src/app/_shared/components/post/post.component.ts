@@ -32,7 +32,7 @@ export class PostComponent {
     const currentTime :Date = new Date();
     const timeDifference = currentTime.getTime() - postTime.getTime();
 
-    const seconds = timeDifference / 1000;
+    const seconds = Math.floor(timeDifference / 1000);
     const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
     const days = Math.floor(hours / 24);
@@ -41,7 +41,9 @@ export class PostComponent {
       return `${days} days ago`
     } else if (hours > 0) {
       return `${hours} hours ago`
-    } else if (minutes > 0) {
+    } else if (minutes === 1){
+      return `${minutes} minute ago` 
+    } else if (minutes > 1) {
       return `${minutes} minutes ago`
     } else {
       return `${seconds} seconds ago`
@@ -49,8 +51,24 @@ export class PostComponent {
 
   }
 
-  onReplyClick(): void {
+  onLikeClick(): void {
+    console.log('Like clicked');
+  }
+
+  onCommentClick(): void {
     console.log('Reply clicked');
+  }
+
+  onShareClick(): void {
+    console.log('Share clicked')
+  }
+
+  onUserClick(): void {
+    console.log('User clicked');
+  }
+
+  onPostClick(): void {
+    console.log('Post clicked');
   }
 }
 

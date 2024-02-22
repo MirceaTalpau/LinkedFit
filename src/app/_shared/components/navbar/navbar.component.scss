@@ -1,0 +1,52 @@
+mat-toolbar{
+  display: flex;
+  align-items: center;
+}
+
+.title{
+  margin-right: auto;
+  margin-left: 20px;
+}
+
+.search-box{
+  flex: 1;
+  margin: 0 20px;
+  
+}
+
+.search-box:hover{
+  border-color: white;
+
+}
+
+.search-box:focus{
+  border-color: primary;
+  border: solid 1px;
+  box-shadow: none;
+}
+
+.profile {
+    margin-left: 20px;
+    display: inline-block; /* Ensure the container doesn't stretch */
+  }
+
+  .spacer{
+    flex: 1;
+  }
+  .profile-button {
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    height: 30px;
+    width: 40px;
+    border-radius: 100px;
+    border: none; /* Remove default button border */
+    background-color: transparent; /* Make the button transparent */
+  }
+  
+  .profile-icon {
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    object-fit: cover; /* Ensure the image covers the button */
+  }

@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    justify-content: space-between; /* Distribute items evenly with space between */
+    align-items: center; /* Center items vertically */
+}
+
+.left-container,
+.right-container {
+    flex: 1; /* Allow containers to grow to fill available space */
+    margin: 0 10px; /* Add margin to create space between containers */
+}
+
+.post-container {
+    flex: 2; /* Allow post container to take up more space */
+    margin: 0 10px; /* Add margin to create space between containers */
+    width: 400px;
+    max-width: 100%; /* Ensure post container doesn't exceed 100% of parent width */
+    height: auto;
+}

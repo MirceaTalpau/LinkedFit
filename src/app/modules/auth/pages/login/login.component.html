@@ -1,0 +1,32 @@
+<div class="container">
+    <form [formGroup]="loginInfo" class="login-form">
+        <div class="email">
+            <span class="p-input-icon-left">
+            <i class="pi pi-user"></i>
+            <input type="text" pInputText formControlName="email" placeholder="Email" />
+            </span>
+        </div>
+    
+        <div class="password">
+            <span class="p-input-icon-left">
+                <i class="pi pi-lock"></i>
+                <input type="password" pInputText formControlName = "password" placeholder="Password"/>
+            </span>
+        </div>
+        <div *ngIf="logError"class="error-message">Mail and password are incorrect!</div>
+        <p-button label="Log In" [rounded]="true" (onClick)="onSubmit()" class="submit"></p-button>
+        <a href="/auth/forgot-password">Forgot password?</a>
+        <p-button label="Create new account" class="createAcc" severity="success" (onClick)="register()"></p-button>
+       
+
+    </form>
+    <p-dialog *ngIf="emailError" header="Email not verified!" [(visible)]="!modalVisible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false" [closable]="false" >
+        <p class="m-0">
+            Your email is not verified. Click ok to resend verification email.
+        </p>
+        <div class="button-container">
+            <p-button label="OK" (onClick)="resendEmail()" class="m-button"></p-button>
+            <p-button label="Cancel" (onClick)="cancel()" class="m-button"></p-button>
+        </div>
+    </p-dialog>
+</div>

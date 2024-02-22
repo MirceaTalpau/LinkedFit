@@ -1,0 +1,65 @@
+.container{
+    width: 100%;
+    height: 100%;
+    background-color:	 #f2f2f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.register-form{
+    width: 450px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+
+}
+
+.error{
+    color: red;
+    background-color: #fff;
+    width: 100%;
+}
+
+.name {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-bottom: 25px; /* Optional: Add margin between name fields and the rest */
+}
+
+
+.gender {
+    display: flex;
+    justify-content: space-evenly;
+    width: 50%;
+    margin-bottom: 10px; /* Optional: Add margin between name fields and the rest */
+}
+
+.birthday{
+    margin-bottom: 10px;
+}
+
+.email{
+    margin-bottom: 25px;
+    
+}
+
+.password{
+    margin-bottom: 25px;
+}
+
+.m-button{
+    display: flex;
+    justify-content: flex-end;
+}
+

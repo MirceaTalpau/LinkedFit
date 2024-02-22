@@ -1,0 +1,68 @@
+<div class="container">
+    <form [formGroup]="registerForm" class="register-form">
+        <div class="title">
+            <h1>Register</h1>
+        </div>
+        <div class="name">     
+            <div class="fname">
+                <span class="p-float-label">
+                    <input type="text" pInputText id="firstName" formControlName="firstName" />
+                    <label for="firstName">First Name</label>
+                </span>
+                
+            </div>
+            <div class="lname">
+                <span class="p-float-label">
+                    <input type="text" pInputText id="lastName" formControlName="lastName" />
+                    <label for="lastName">Last Name</label>
+                </span>
+            </div>
+        </div>
+        <div class="credentials">
+            <div class="email">
+                <span class="p-float-label">
+                    <input type="email" pInputText id="email" formControlName="email" />
+                    <label for="email">Email</label>
+                </span>
+            </div>
+            <div class="password">
+                <span class="p-float-label">
+                    <input type="password" pInputText id="password" formControlName="password" />
+                    <label for="password">Password</label>
+                </span>
+            </div>
+        </div>
+        <div class="birthday">
+            <span class="p-float-label">
+                <p-calendar formControlName="birthday" id="birthday" [showIcon]="false"></p-calendar>
+                <label for="birthday">Birthday</label>
+            </span>
+        </div>
+          
+        <div class="gender">
+            <div class="flex align-items-center">
+                <p-radioButton name="gender" value="M" formControlName="gender" inputId="gender1"></p-radioButton>
+                <label for="gender1" class="ml-2">Male</label>
+            </div>
+            
+            <div class="flex align-items-center">
+                <p-radioButton name="gender" value="F" formControlName="gender" inputId="gender2"></p-radioButton>
+                <label for="gender2" class="ml-2">Female</label>
+            </div>
+        </div>
+        <div class="error">
+            <div *ngIf="error">There was an error creating your account!</div>
+        </div>
+        <div class="flex justify-content-center">
+            <p-button label="Back" [rounded]="true" (onClick)="redirect()" class="back"></p-button>
+            <p-button label="Register" [disabled]="!this.registerForm.valid" [rounded]="true" (onClick)="onSubmit()" class="submit"></p-button>
+        </div>
+        <p-dialog header="Success!" [(visible)]="modalVisible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false" [closable]="false" >
+            <p class="m-0">
+                You have successfully registered! You received an email to confirm your account. Please check your email.
+            </p>
+            <p-button label="OK" (onClick)="redirect()" class="m-button"></p-button>
+        </p-dialog>
+    </form>
+    
+</div>

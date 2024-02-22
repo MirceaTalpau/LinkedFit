@@ -1,0 +1,42 @@
+<!-- <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="#">LinkedFit</a>
+      
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <input type="text" (keyup)="onKey($event)" placeholder="Search for people, posts or communities" pInputText formControlName="text" style="width: 350px; height: 40px; border-radius: 100px;  border-style: solid; border-width: thin;"/>
+          </li>
+        </ul>
+        
+        <ul class="navbar-nav sm-icons">
+          <li>ceva</li>
+        </ul>
+      </div>
+    
+  </nav> -->
+
+  <mat-toolbar  style="height: 60px;">
+    <div class="title">
+        LinkedFit
+    </div>
+    <div class="spacer"></div>
+    <input type="text" (keyup)="onKey($event)" class="search-box" placeholder="Search for people, posts or communities" pInputText formControlName="text" style="width: 350px; height: 40px; border-radius: 100px;  border-style: solid; border-width: thin;"/>
+    <div class="spacer"></div>
+    <div class="profile">
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="profile-button" >
+        <img src="assets/blank-profile.jpeg" class="profile-icon">
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="/profile">
+                <span>Profile</span>
+            </button>
+            <button mat-menu-item routerLink="/settings">
+                <span>Settings</span>
+            </button>
+            <button mat-menu-item >
+                <span>Logout</span>
+            </button>
+        </mat-menu>
+    </div>
+</mat-toolbar>
+

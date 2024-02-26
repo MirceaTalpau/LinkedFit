@@ -10,11 +10,21 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import {ImageModule} from 'primeng/image';
 import { DividerModule } from 'primeng/divider';
+import {GalleriaModule} from 'primeng/galleria';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatListModule} from '@angular/material/list';
 import { PostComponent } from './components/post/post.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommentComponent } from './components/comment/comment.component';
+import { CreatePostComponent } from './components/create-post/create-post.component';
+import { UserIconComponent } from './components/user-icon/user-icon.component';
+import { SearchbarComponent } from './components/searchbar/searchbar.component';
 
 
 
@@ -22,11 +32,17 @@ import { PostComponent } from './components/post/post.component';
   declarations: [
     PageNotFoundComponent,
     NavbarComponent,
-    PostComponent
+    PostComponent,
+    CommentComponent,
+    CreatePostComponent,
+    UserIconComponent,
+    SearchbarComponent
   ],
   imports: [
     CommonModule,
     ButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
     InputTextModule,
     RadioButtonModule,
     CalendarModule,
@@ -34,15 +50,24 @@ import { PostComponent } from './components/post/post.component';
     MatToolbarModule,
     MatMenuModule,
     MatCardModule,
+    MatInputModule,
     MatIconModule,
+    MatButtonModule,
+    MatListModule,
+    MatFormFieldModule,
     CarouselModule,
     DividerModule,
-    ImageModule
+    ImageModule,
+    GalleriaModule
   ],
   exports: [
     PageNotFoundComponent,
     NavbarComponent,
     PostComponent,
+    CommentComponent,
+    CreatePostComponent,
+    UserIconComponent,
+    SearchbarComponent,
   ]
 })
 export class SharedModule { }

@@ -11,9 +11,9 @@ export class AuthService {
 
   private readonly API = "https://localhost:44306/api/v1"
 
-  constructor(
-    private http: HttpClient
-  ) { }
+
+  constructor(private http: HttpClient) { }
+  
   login(user: LoginInfo): Observable<any>{
     return this.http.post(`${this.API}/auth/login`, user);
   }

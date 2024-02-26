@@ -1,5 +1,6 @@
-export interface Post{
+export interface PostInterface{
     postId: number;
+    userId: number;
     userName: string;
     userIconUrl: string;
     postImagesUrls : string[] | null;

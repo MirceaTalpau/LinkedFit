@@ -45,7 +45,7 @@
 
 .action-item:hover {
   color: #007bff;
-  transition-delay: 1s; /* Add a delay of 1 second before the transition starts */
+  transition-delay: 0.7s; /* Add a delay of 1 second before the transition starts */
   transform: scale(1.2); /* Scale the icon to 1.2 times its original size */
 }
 
@@ -65,6 +65,34 @@
     background-color: #f5f5f5;
 }
 
-a{
+.count{
   padding-left: 5px;
+  text-decoration: none !important;
+  color: black;
 }
+
+.send-comment{
+  border: none;
+  background: none !important;
+}
+
+.comment-form.container{
+  border-radius: 20px;
+}
+
+.comment-form{
+  background-color: green;
+  border-radius: 20px;
+  width: 95%;
+}
+
+.comment-section{
+  width: 100%;
+}
+
+.user-avatar{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+

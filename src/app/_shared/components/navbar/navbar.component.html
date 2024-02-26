@@ -24,7 +24,7 @@
     <div class="spacer"></div>
     <div class="profile">
         <button mat-icon-button [matMenuTriggerFor]="menu" class="profile-button" >
-        <img src="assets/blank-profile.jpeg" class="profile-icon">
+        <app-user-icon></app-user-icon>
         </button>
         <mat-menu #menu="matMenu">
             <button mat-menu-item routerLink="/profile">

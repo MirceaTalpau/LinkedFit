@@ -12,7 +12,7 @@ export class CommentComponent {
   @Input() comment !: CommentInterface;
   @Input() replies : CommentInterface[] = [];
   replyToCommentVisible : boolean = false;
-  replyFormVisible : boolean = false;
+  replyToReplyVisible : boolean = false;
 
   constructor() { }
 
@@ -20,9 +20,9 @@ export class CommentComponent {
     console.log('User clicked');
     this.replyToCommentVisible = true;
   }
-  onReplyClick() : void{
+  onReplyToReplyClick() : void{
     console.log('User clicked');
-    this.replyFormVisible = true;
+    this.replyToReplyVisible = true;
   }
 
   calculateTimeSincePost(postTime: Date): string {

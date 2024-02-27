@@ -35,7 +35,7 @@
     <div class="reply" *ngFor="let reply of replies">
         <mat-card class="reply-card" *ngIf="reply.parentId === comment.commentId">
             <mat-card-header>
-                <img (click)="onReplyClick()" style="cursor: pointer;" src="{{reply.userIconUrl}}" onerror="this.onerror=null; this.src='assets/blank-profile.jpeg'" mat-card-avatar class="example-header-image"><img>
+                <img (click)="onReplyToReplyClick()" style="cursor: pointer;" src="{{reply.userIconUrl}}" onerror="this.onerror=null; this.src='assets/blank-profile.jpeg'" mat-card-avatar class="example-header-image"><img>
                 <mat-card-title>{{reply.userName}}</mat-card-title>
                 <mat-card-subtitle>{{calculateTimeSincePost(reply.createdAt)}}</mat-card-subtitle>
             </mat-card-header>
@@ -44,14 +44,14 @@
             </mat-card-content>
             <mat-card-actions>
                 <button mat-button>LIKE</button>
-                <button mat-button (click)="onReplyClick()">SHARE</button>
+                <button mat-button (click)="onReplyToReplyClick()">SHARE</button>
             </mat-card-actions>
         </mat-card>
     </div>
     <!-- <app-user-icon *ngIf="replyFormVisible" ></app-user-icon> -->
-    <app-searchbar *ngIf="replyFormVisible" [button]="true" [placeholder]="'Write a reply...'" [userId]="1" [iconSrc]="'ss'"></app-searchbar>
+    <app-searchbar *ngIf="replyToReplyVisible" [button]="true" [placeholder]="'Write a reply...'" [userId]="1" [iconSrc]="'ss'"></app-searchbar>
 </div>
 
-
+modifica img din header sa foloseasca user icon component
 
 

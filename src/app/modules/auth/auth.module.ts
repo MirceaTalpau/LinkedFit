@@ -15,6 +15,8 @@ import { AuthComponent } from './pages/auth/auth.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { SharedModule } from 'src/app/_shared/shared.module';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { SharedModule } from 'src/app/_shared/shared.module';
     RadioButtonModule,
     CalendarModule,
     DialogModule,
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [
     

@@ -4,6 +4,8 @@
     padding: 10px;
     margin-bottom: 10px;
     height: 100%;
+    box-shadow: 1px 1px 3px #ccc; /* Add shadow for depth */
+
 }
 
 .user-info {
@@ -48,6 +50,7 @@
     width: calc(100% - 40px); /* Adjust width to make it smaller */
     border: 1px solid #ccc; /* Add border for separation */
     border-radius: 5px; /* Add some border radius for styling */
+    box-shadow: 1px 1px 3px #ccc; /* Add shadow for depth */
 }
 
 .reply-card .mat-card-header,

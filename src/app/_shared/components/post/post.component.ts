@@ -16,6 +16,8 @@ export class PostComponent {
   constructor(private _commentsService: CommentsService) { }
 
   @Input() post!: PostInterface;
+  showComments: boolean = false;
+  loadMoreComments: number = 4;
   comment: string = '';
   comments: CommentInterface[] = [
     
@@ -300,7 +302,14 @@ export class PostComponent {
   }
 
   onCommentClick(): void {
-    console.log('Reply clicked');
+    this.showComments = true;
+    this.fetchComments();
+  }
+
+  onLoadMoreCommentsClick(): void {
+    // apeleaza api cu nr de comentarii
+    // afiseaza comentariile
+    //incrementeaza loadMoreComments cu 2
   }
 
   onShareClick(): void {

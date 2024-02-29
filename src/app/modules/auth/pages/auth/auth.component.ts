@@ -10,8 +10,6 @@ import { PostInterface } from 'src/app/_core/models/shared/PostInterface';
 })
 export class AuthComponent {
 
-  
-
   posts: PostInterface[] = [
     {
       postId: 1,

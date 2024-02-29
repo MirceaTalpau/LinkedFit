@@ -1,7 +1,7 @@
 <div [formGroup]="textGroup" class="group" (keyup)="returnValue()">
     <app-user-icon *ngIf="userId !== 0" [iconURI]="iconSrc" [userID]="userId" (userIconClick)="iconClick()" ></app-user-icon>
-    <input type="text" class="search-box" placeholder="{{placeholder}}" pInputText formControlName="textForm"/>
-    <button *ngIf="button" class="send-button" (click)="buttonClick()">
+    <input type="text" class="search-box" placeholder="{{placeholder}}" pInputText formControlName="textForm" style="margin: 0;"/>
+    <button *ngIf="button" class="send-button" (click)="buttonClick()" style="margin-top: 4px;">
         <mat-icon>send</mat-icon>
     </button>
 </div>

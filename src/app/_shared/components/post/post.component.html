@@ -1,29 +1,11 @@
-<!-- <div class="social-media-post">
-    <div class="user-info">
-      <img [src]="userIconUrl" alt="User Icon">
-      <span>{{ userName }}</span>
-      <span class="post-time">{{ calculateTimeSincePost(postTime) }}</span>
-    </div>
-    <div class="post-content">
-      {{ postContent }}
-    </div>
-    <div class="actions">
-      <button><i class="fa fa-thumbs-up"></i> {{ likesCount }}</button>
-      <button><i class="fa fa-comment"></i> {{ commentsCount }}</button>
-      <button><i class="fa fa-share"></i> {{ sharesCount }}</button>
-    </div>
-  </div> -->
-
-  <div class="card-wrapper">
-    <a class="top-right-link">sss</a>
-<mat-card class="post-container">
+<div class="card-wrapper">
+  <a class="top-right-link">sss</a>
+  <mat-card class="post-container">
     <mat-card-header>
         <img (click)="onUserClick()" style="cursor: pointer;" src="{{post.userIconUrl}}" mat-card-avatar class="example-header-image"><img>
-        <!-- <app-user-icon [iconURI]="post.userIconUrl" [userID]="post."></app-user-icon> -->
         <mat-card-title (click)="onUserClick()" style="cursor: pointer;">{{post.userName}}</mat-card-title>
         <mat-card-subtitle>{{calculateTimeSincePost(post.postTime)}}</mat-card-subtitle>
     </mat-card-header>
-    
     <mat-card-content>
       <div *ngIf="post.postImagesUrls">
         <p-carousel *ngIf="post.postImagesUrls.length === 1" [value]="post.postImagesUrls" [numVisible]="1" [numScroll]="1" [showIndicators]="false" [showNavigators]="false"  >
@@ -45,35 +27,45 @@
           </ng-template>
         </p-carousel>
       </div>
-      <!-- <p-galleria [value]="post.postImagesUrls || []" [numVisible]="5" [circular]="true" [showItemNavigators]="true" [showThumbnails]="false" [containerStyle]="{ 'max-width': '640px' }">
-        <ng-template pTemplate="item" let-item>
-          <p-image src="{{item}}" [preview]="true" width="450px" height="450px"></p-image>
-        </ng-template>
-    </p-galleria> -->
       <p *ngIf="post.postContent.length > 125">{{splitPostContent(post.postContent)}}
         <a (click)="onPostClick()" style="cursor: pointer;">Read more</a>
       </p>
       <p *ngIf="post.postContent.length <= 125">{{splitPostContent(post.postContent)}}</p>
-      <p-divider></p-divider>
+      <div class="count-container">
+        <div class="likes-count">
+          <span>{{post.likesCount}} likes</span>
+        </div>
+        <div class="comments-count">
+          <span>{{post.commentsCount}} comments </span>
+        </div>
+        <div class="shares-count">
+          {{post.sharesCount}} shares
+        </div>
+      </div>
+      <hr>
     </mat-card-content>
     <mat-card-actions>
-        <mat-icon (click)="onLikeClick()" class="action-item" color="warn">thumb_up</mat-icon>
-        <a class="count">{{post.likesCount}}</a>
-        <mat-icon (click)="onCommentClick()" class="action-item" color="warn">comment</mat-icon>
-        <a class="count">{{post.commentsCount}}</a>
-        <mat-icon (click)="onShareClick()" class="action-item" color="warn">share</mat-icon>
-        <a class="count">{{post.sharesCount}}</a>
+        <div class="actions-container">
+          <div class="item">
+            <mat-icon (click)="onLikeClick()" class="action-item" color="warn">thumb_up</mat-icon>
+            <span>Like</span>
+          </div>
+          <div class="item" (click)="onCommentClick()">
+            <mat-icon (click)="onCommentClick()" class="action-item" color="warn">comment</mat-icon>
+            <span>Comment</span>
+          </div>
+          <div class="item">
+            <mat-icon (click)="onShareClick()" class="action-item" color="warn">share</mat-icon>
+            <span>Share</span>
+          </div>
+        </div>
     </mat-card-actions>
-    <mat-card-footer>
-        <p-divider></p-divider>
-        <!-- <input type="text" class="search-box" placeholder="What's on your mind?" pInputText formControlName="commentForm" style="width: 90%; height: 40px; border-radius: 100px;  border-style: solid; border-width: thin; background-color:#F5F5F5; margin-left: 10px;"/> -->
+    <mat-card-footer *ngIf="showComments">
         <app-searchbar [userId]="1" [iconSrc]="'s'" [placeholder]="'What\'s on your mind?'" (textEvent)="getCommentFormValue($event)" [button]="true" (buttonEvent)="onCommentSubmit()"></app-searchbar>
-        <!-- <button class="send-comment" (click)="onCommentSubmit()" >
-          <mat-icon>send</mat-icon>
-        </button> -->
         <div>
           <app-comment *ngFor="let comment of comments" [comment]="comment" [replies]="comments"></app-comment>
         </div>
+        <a>Load more comments</a>
     </mat-card-footer>
-</mat-card>
+  </mat-card>
 </div>

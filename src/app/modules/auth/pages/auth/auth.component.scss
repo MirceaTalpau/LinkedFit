@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-between; /* Distribute items evenly with space between */
     align-items: center; /* Center items vertically */
+    background-color: #f5f5f5;
 }
 
 .left-container,
@@ -17,3 +18,81 @@
     max-width: 100%; /* Ensure post container doesn't exceed 100% of parent width */
     height: auto;
 }
+
+
+
+.comment-container{
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    z-index: 1;
+    width: auto;
+}
+
+.user-icon{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    align-self: flex-start;
+}
+
+.comment-body{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 5px;
+    border-radius: 5%;
+    background-color: #ecebeb;
+    width: auto;
+}
+
+.user-name{
+    width: 100%;
+    color: black;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.comment-text{
+    width: 100%;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+.menu-trigger{
+    visibility: hidden;
+    border: none;
+    border-radius: 50%;
+}
+
+.menu{
+    background-color: #f5f5f5;
+}
+
+.menu-item{
+    background-color: #f5f5f5;
+    margin-bottom: -8px;
+}
+
+.menu-item:hover{
+    background-color: #e8e8e8;
+}
+
+.comment-container:hover .menu-trigger{
+    visibility: visible;
+}
+
+::ng-deep .mat-mdc-menu-content{
+    background-color: #f5f5f5;
+}
+
+.actions{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    // justify-content: flex-start;
+    // margin-left: 40px;
+    // background-color: #f5f5f5;
+    // border-radius: 5px;
+    // width: 100%;
+}
+

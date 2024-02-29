@@ -13,6 +13,23 @@
     <div class="post-container">
         <app-create-post></app-create-post>
         <app-post class="post" *ngFor="let post of posts" [post]="post"></app-post>
+            <div class="comment-container">
+                <img src='assets/blank-profile.jpeg' class="user-icon">
+                <div class="comment-body">
+                    <span class="user-name">John Doe</span>
+                    <span class="comment-text">This is a comment Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi culpa magnam natus a suscipit. Aliquam voluptates corrupti saepe ad non! Eaque laboriosam minus soluta doloribus. Voluptates aut facere alias voluptatum illum tempora reprehenderit autem magnam inventore asperiores ut voluptatibus veritatis minima sit fugiat, fugit nemo accusamus enim ex voluptate optio.</span>
+                </div>
+                <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-trigger">
+                    <mat-icon>more_horiz</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu" class="menu">
+                    <button mat-menu-item class="menu-item">Reply</button>
+                    <button mat-menu-item class="menu-item">Report</button>
+                </mat-menu>
+            </div>
+            
+        <app-create-post></app-create-post>
+
     </div>
     <div class="right-container">
         <div class="right-container-content">

@@ -1,57 +1,59 @@
-<!-- <div class="comment-container">
-    <div class="user-info">
-        <img class="user-icon" src="{{comment.userIconUrl}}" alt="User Icon">
-        <span class="user-name">{{comment.userName}}</span>
-    </div>
-    <div class="comment-body">
-        <p class="comment-text">{{comment.body}}</p>
-        <div class="comment-details">
-            <span class="comment-date">{{comment.createdAt}}</span>
-            <span class="likes-count">{{comment.likesCount}}</span>
+<div class="comment-wrapper" *ngIf="comment.parentId === null">
+    <div class="comment-container">
+        <img src='assets/blank-profile.jpeg' class="user-icon">
+        <div class="comment-body">
+            <span class="user-name">{{comment.userName}}</span>
+            <span class="comment-text">{{comment.body}}</span>
         </div>
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-trigger">
+            <mat-icon>more_horiz</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" class="menu">
+            <button mat-menu-item class="menu-item">Reply</button>
+            <button mat-menu-item class="menu-item">Report</button>
+        </mat-menu>
     </div>
-</div> -->
-
-<mat-card class="comment-container" *ngIf="comment.parentId === null">
-    <mat-card-header>
-        <img (click)="onReplyToCommentClick()" style="cursor: pointer;" src="{{comment.userIconUrl}}" onerror="this.onerror=null; this.src='assets/blank-profile.jpeg'" mat-card-avatar class="example-header-image"><img>
-        <mat-card-title>{{comment.userName}}</mat-card-title>
-        <mat-card-subtitle>{{calculateTimeSincePost(comment.createdAt)}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p>This card indeterminates progress bar.</p>
-      <p>{{comment.body}}</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button >SHARE</button>
-    </mat-card-actions>
-    <mat-card-footer *ngIf="replyToCommentVisible">
-        <app-searchbar [button]="true" [placeholder]="'Write a reply...'" [userId]="1" [iconSrc]="'ss'"></app-searchbar>
-    </mat-card-footer>
-</mat-card>
-
-<div class="replies-container" *ngIf="replies.length > 0" >
-    <div class="reply" *ngFor="let reply of replies">
-        <mat-card class="reply-card" *ngIf="reply.parentId === comment.commentId">
-            <mat-card-header>
-                <img (click)="onReplyToReplyClick()" style="cursor: pointer;" src="{{reply.userIconUrl}}" onerror="this.onerror=null; this.src='assets/blank-profile.jpeg'" mat-card-avatar class="example-header-image"><img>
-                <mat-card-title>{{reply.userName}}</mat-card-title>
-                <mat-card-subtitle>{{calculateTimeSincePost(reply.createdAt)}}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <p>{{reply.body}}</p>
-            </mat-card-content>
-            <mat-card-actions>
-                <button mat-button>LIKE</button>
-                <button mat-button (click)="onReplyToReplyClick()">SHARE</button>
-            </mat-card-actions>
-        </mat-card>
+    <div class="actions">
+      <div class="action-items">
+        <span class="action-item-span">February 24</span>
+        <a href="#" class="action-item">Like</a>
+        <a href="#" class="action-item">Reply</a>
+      </div>
+      <div class="likes-count">
+        <span class="likes-count-span">3</span>
+        <mat-icon class="likes-count-icon">thumb_up</mat-icon>
+      </div>
     </div>
-    <!-- <app-user-icon *ngIf="replyFormVisible" ></app-user-icon> -->
-    <app-searchbar *ngIf="replyToReplyVisible" [button]="true" [placeholder]="'Write a reply...'" [userId]="1" [iconSrc]="'ss'"></app-searchbar>
 </div>
-
-modifica img din header sa foloseasca user icon component
-
-
+<div class="replies-container">
+    <div class="reply-wrapper" *ngFor="let reply of replies">
+      <div class="iterate" *ngIf="reply.parentId === comment.commentId">
+        <div class="reply">
+          <img src="assets/blank-profile.jpeg" class="user-icon" />
+          <div class="reply-body">
+            <span class="user-name">{{ reply.userName }}</span>
+            <span class="reply-text">{{ reply.body }}</span>
+          </div>
+          <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-trigger">
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" class="menu">
+            <button mat-menu-item class="menu-item">Reply</button>
+            <button mat-menu-item class="menu-item">Report</button>
+          </mat-menu>
+        </div>
+        <div class="actions">
+          <div class="action-items">
+            <span class="action-item-span">February 24</span>
+            <a href="#" class="action-item">Like</a>
+            <a href="#" class="action-item">Reply</a>
+          </div>
+          <div class="likes-count">
+            <span class="likes-count-span">3</span>
+            <mat-icon class="likes-count-icon">thumb_up</mat-icon>
+          </div>
+        </div>
+      </div> <!-- Closing the <div class="iterate"> block -->
+    </div> <!-- Closing the <div class="reply-wrapper"> block -->
+  </div> <!-- Closing the <div class="replies-container"> block -->
+  

@@ -19,6 +19,7 @@ export class PostComponent {
   showComments: boolean = false;
   loadMoreComments: number = 4;
   comment: string = '';
+  showFullPost: boolean = false;
   comments: CommentInterface[] = [
     
       {

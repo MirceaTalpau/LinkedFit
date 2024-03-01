@@ -13,6 +13,7 @@ export class CommentComponent {
   @Input() replies : CommentInterface[] = [];
   replyToCommentVisible : boolean = false;
   replyToReplyVisible : boolean = false;
+  showFullComment : boolean = false;
 
   constructor() { }
 

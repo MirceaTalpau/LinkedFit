@@ -27,10 +27,13 @@
           </ng-template>
         </p-carousel>
       </div>
-      <p *ngIf="post.postContent.length > 125">{{splitPostContent(post.postContent)}}
-        <a (click)="onPostClick()" style="cursor: pointer;">Read more</a>
+      <p *ngIf="post.postContent.length > 125 && !showFullPost">
+        {{ post.postContent | readMore }}
+        <a (click)="showFullPost = true" style="cursor: pointer;">Read more</a>
       </p>
-      <p *ngIf="post.postContent.length <= 125">{{splitPostContent(post.postContent)}}</p>
+      <p *ngIf="post.postContent.length <= 125 || showFullPost">
+        {{ post.postContent }}
+      </p>
       <div class="count-container">
         <div class="likes-count">
           <span>{{post.likesCount}} likes</span>

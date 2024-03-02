@@ -129,3 +129,16 @@
   display: flex;
   justify-content: flex-end;
 }
+
+@media only screen and (max-width: 1400px){
+  .shares-count{
+    display: none;
+  }
+  .comments-count{
+    width: 50%;
+  }
+  
+}
+
+
+

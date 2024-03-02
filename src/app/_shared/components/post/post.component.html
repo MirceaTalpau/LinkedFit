@@ -1,5 +1,12 @@
 <div class="card-wrapper">
-  <a class="top-right-link">sss</a>
+  <div *ngIf="true">shared by</div>
+  <button mat-icon-button [matMenuTriggerFor]="menu" class="top-right-link">
+    <mat-icon>more_horiz</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu" class="menu">
+    <button mat-menu-item class="menu-item">Reply</button>
+    <button mat-menu-item class="menu-item">Report</button>
+  </mat-menu>
   <mat-card class="post-container">
     <mat-card-header>
         <img (click)="onUserClick()" style="cursor: pointer;" src="{{post.userIconUrl}}" mat-card-avatar class="example-header-image"><img>

@@ -1,14 +1,22 @@
-.search-box{
-    width: 90%;
-    margin-left: 5%;
-    
+.container{
+    width: 100%;
+    max-width: 100%;
+    border-radius: 15px;
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.create-post-container{
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    box-shadow: 1px 1px 5px #ccc;
-    border-radius: 10px;
-    background-color: #FFFF;
+.create-post{
+    cursor: pointer;
+    width: 100%;
+    border: 1px solid #e0e0e0;
+    margin-left: 15px;
+    padding-left: 15px;
+    border-radius: 15px;
 }

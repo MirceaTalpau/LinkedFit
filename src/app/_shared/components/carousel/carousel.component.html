@@ -14,21 +14,21 @@
           Your browser does not support the video tag.
         </video>
       </div>
-      <div class="dot-container">
+      <div class="dot-container" *ngIf="items.length > 1">
         <span *ngFor="let dot of dots; let i=index"
             class="dot"
             [ngClass]="{'active': currentIndex === dot}"
         >
         </span>
       </div>
+      <div class="caption-container" style="height: 25px;">{{item.caption}}</div>
     </div>
-    <div class="btn-carousel btn-prev">
+    <div *ngIf="indicators" class="btn-carousel btn-prev">
       <mat-icon class="icon-carousel icon-prev" (click)="prev()">arrow_back_ios</mat-icon>
     </div>
-    <div class="btn-carousel btn-next">
+    <div *ngIf="indicators" class="btn-carousel btn-next">
       <mat-icon class="icon-carousel icon-next" (click)="next()">arrow_forward_ios</mat-icon>
     </div>
-    <div class="caption-container" style="height: 25px;">{{'ss'}}</div>
 </div>
 
 <!-- <div class="caption-container" style="background-color: rgba(255,255,0,0);"></div> -->

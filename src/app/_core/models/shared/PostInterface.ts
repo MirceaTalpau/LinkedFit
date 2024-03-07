@@ -3,7 +3,10 @@ export interface PostInterface{
     userId: number;
     userName: string;
     userIconUrl: string;
-    postImagesUrls : string[] | null;
+    media:{
+         type: string, 
+         url: string, 
+         caption?: string}[];
     postContent: string;
     postTime: Date;
     likesCount: number;

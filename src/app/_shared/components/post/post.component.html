@@ -14,8 +14,8 @@
         <mat-card-subtitle>{{calculateTimeSincePost(post.postTime)}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <div *ngIf="post.postImagesUrls">
-        <p-carousel *ngIf="post.postImagesUrls.length === 1" [value]="post.postImagesUrls" [numVisible]="1" [numScroll]="1" [showIndicators]="false" [showNavigators]="false"  >
+      <div class="carousel-container" *ngIf="post.media">
+        <app-carousel *ngIf="post.media.length === 1" [indicators]="false" [items]="post.media"  >
           <ng-template let-imageUrl pTemplate="item">
               <div class="border-1 surface-border border-round m-2 text-center py-5 px-3" style="width: 100%;">
                   <div class="mb-3">
@@ -23,8 +23,8 @@
                     </div>
               </div>
           </ng-template>
-        </p-carousel>
-        <p-carousel *ngIf="post.postImagesUrls.length > 1" [value]="post.postImagesUrls" [numVisible]="1" [numScroll]="1" >
+        </app-carousel>
+        <app-carousel *ngIf="post.media.length > 1" [indicators]="true" [items]="post.media" >
           <ng-template let-imageUrl pTemplate="item">
               <div class="border-1 surface-border border-round m-2 text-center py-5 px-3" style="width: 100%;">
                   <div class="mb-3" >
@@ -32,7 +32,7 @@
                   </div>
               </div>
           </ng-template>
-        </p-carousel>
+        </app-carousel>
       </div>
       <p *ngIf="post.postContent.length > 125 && !showFullPost">
         {{ post.postContent | readMore }}

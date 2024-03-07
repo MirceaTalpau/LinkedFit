@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class CarouselComponent {
   @Input() items: { type: string, url: string, caption?: string}[] = [];
+  @Input() indicators: boolean = true;
   currentIndex: number = 0;
   dots: number[] = [0,1,2]
 

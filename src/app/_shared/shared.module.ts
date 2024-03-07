@@ -26,6 +26,7 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
 import { UserIconComponent } from './components/user-icon/user-icon.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { ReadMorePipe } from './pipes/read-more.pipe';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 
 
@@ -38,7 +39,8 @@ import { ReadMorePipe } from './pipes/read-more.pipe';
     CreatePostComponent,
     UserIconComponent,
     SearchbarComponent,
-    ReadMorePipe
+    ReadMorePipe,
+    CarouselComponent
   ],
   imports: [
     CommonModule,
@@ -70,6 +72,7 @@ import { ReadMorePipe } from './pipes/read-more.pipe';
     CreatePostComponent,
     UserIconComponent,
     SearchbarComponent,
+    CarouselComponent
   ]
 })
 export class SharedModule { }

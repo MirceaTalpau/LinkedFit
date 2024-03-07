@@ -10,6 +10,16 @@ import { PostInterface } from 'src/app/_core/models/shared/PostInterface';
 })
 export class AuthComponent {
 
+  items = [
+    { type: 'image', url: 'assets/UserIcons/first.jpg' },
+    { type: 'image', url: 'assets/UserIcons/second.jpg' },
+    { type: 'image', url: 'assets/UserIcons/third.jpg' },
+    { type: 'image', url: 'assets/UserIcons/4th.jpg' },
+    { type: 'image', url: 'assets/UserIcons/5th.jpg' },
+    { type: 'video' , url: 'https://www.youtube.com/watch?v=3JZ_D3ELwOQ' }
+    
+  ]
+
   posts: PostInterface[] = [
     {
       postId: 1,

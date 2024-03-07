@@ -1,0 +1,38 @@
+<div class="wrapper">
+  <div class="carousel" *ngIf="items && items.length > 0">
+    <div *ngFor="let item of items; let i = index" [hidden]="currentIndex !== i">
+      <div class="slide" *ngIf="item.type === 'image'">
+        <img [src]="item.url"
+        [ngClass]="{'image-active': currentIndex === i}"
+         alt="Image"
+         class="fade"
+         >
+      </div>
+      <div class="slide" *ngIf="item.type === 'video'">
+        <video controls class="fade">
+          <source [src]="'assets/videos/video1.mp4'" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="dot-container">
+        <span *ngFor="let dot of dots; let i=index"
+            class="dot"
+            [ngClass]="{'active': currentIndex === dot}"
+        >
+        </span>
+      </div>
+    </div>
+    <div class="btn-carousel btn-prev">
+      <mat-icon class="icon-carousel icon-prev" (click)="prev()">arrow_back_ios</mat-icon>
+    </div>
+    <div class="btn-carousel btn-next">
+      <mat-icon class="icon-carousel icon-next" (click)="next()">arrow_forward_ios</mat-icon>
+    </div>
+    <div class="caption-container" style="height: 25px;">{{'ss'}}</div>
+</div>
+
+<!-- <div class="caption-container" style="background-color: rgba(255,255,0,0);"></div> -->
+
+</div>
+
+

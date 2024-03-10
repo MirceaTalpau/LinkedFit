@@ -62,7 +62,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     CarouselModule,
     DividerModule,
     ImageModule,
-    GalleriaModule
+    GalleriaModule,
   ],
   exports: [
     PageNotFoundComponent,

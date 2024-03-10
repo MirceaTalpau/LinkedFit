@@ -9,7 +9,7 @@ import { FormControl } from '@angular/forms';
 export class CreatePostComponent {
 
   body: string = '';
-  visible: boolean = false;
+  visible: boolean = true;
   onKeyUp() {
     console.log(this.body);
   }

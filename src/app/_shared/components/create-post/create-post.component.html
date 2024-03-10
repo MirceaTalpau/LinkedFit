@@ -14,28 +14,30 @@
 <p-dialog [(visible)]="visible" [modal]="true" [dismissableMask]="true" [responsive]="true"
     [draggable]="false" [resizable]="false" [closeOnEscape]="true" [showHeader]="false"
     [breakpoints]="
-        { '960px': '75vw', '500px': '100vw' }"
+        { '960px': '50vw', '500px': '750vw' }"
         [style]="{ 'width': '50vw' , 'height':'70vh' }" 
         [contentStyle]="{ 'padding': '0' }
     "
 >
-wip
-
-        <div class="title">Create Post</div>
-
-    <div class="types-container">
-        <div class="type" (click)="visible = false">
-            <app-user-icon class="icon"></app-user-icon>
-            <div class="type-name">Photo/Video</div>
+    <div class="modal-container">
+        <div class="header-container">
+            <div class="title">Create Post</div>
+            <div class="close-icon" (click)="visible = false">
+                <i class="fa fa-times" aria-hidden="true"></i>
+                <button mat-button class="close-button"></button>
+            </div>
         </div>
-        <div class="type" (click)="visible = false">
-            <app-user-icon class="icon"></app-user-icon>
-            <div class="type-name">Recipe</div>
+        <div class="types-container">
+            <button mat-button class="button" (click)="showDialog()">Photo/Video</button>
+            <button mat-button class="button" (click)="showDialog()">Recipe</button>
+            <button mat-button class="button" (click)="showDialog()">Progress</button>
         </div>
-        <div class="type" (click)="visible = false">
-            <app-user-icon class="icon"></app-user-icon>
-            <div class="type-name">Progress</div>
+        <div class="body-container">
+            <div class="user-icon-container">
+                <app-user-icon class="icon"></app-user-icon>
+                <div class="user-name">Geani</div>
+            </div>
+
         </div>
     </div>
-
 </p-dialog>

@@ -45,8 +45,13 @@
     flex-direction: column;
     flex-wrap: wrap;
     width: 100%;
-    height: 100%;
     border-radius: 15px;
+}
+
+.modal-container.dragover{
+    background-color: #f0f0f0;
+    border: 2px dashed #666;
+
 }
 
 .header-container{
@@ -55,7 +60,7 @@
     align-items: center;
     width: 100%;
     padding: 10px;
-    border-bottom: 1px solid #e0e0e0;
+    border: 1px solid yellow;
 
 }
 
@@ -85,6 +90,7 @@
 .user-icon-container{
     display: flex;
     border: 1px solid black;
+    width: 100%;
 }
 
 .user-name{
@@ -92,3 +98,38 @@
     font-weight: 600;
     margin-left: 10px;
 }
+
+.body-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 70vh;
+    border: 1px solid blue;
+
+}
+
+.media-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid green;
+    margin-bottom: 10px;
+}
+
+.preview-container {
+    flex: 0 0 calc(20% - 10px); /* Adjust width to accommodate five images in a row */
+    max-width: calc(20% - 10px); /* Set maximum width for each preview container */
+    margin-right: 10px; /* Add margin between preview containers */
+    margin-bottom: 10px; /* Add margin below each row of images */
+    box-sizing: border-box; /* Ensure that padding and border are included in the width calculation */
+}
+
+.preview-image{
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+    margin-right: 10px;
+    border: 2px solid pink;
+}
+
+

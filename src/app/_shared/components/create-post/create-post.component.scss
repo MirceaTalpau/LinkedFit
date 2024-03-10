@@ -4,19 +4,40 @@
     border-radius: 15px;
     background-color: #fff;
     padding: 10px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px 0 #ccc;
     margin-bottom: 20px;
-    border: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+}
+
+.top-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
 }
 
 .create-post{
     cursor: pointer;
-    width: 100%;
+    width: 90%;
     border: 1px solid #e0e0e0;
     margin-left: 15px;
     padding-left: 15px;
     border-radius: 15px;
+    border: 1px solid red;
+}
+
+.button-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.button{
+    width: 33.33%;
+    border-radius: 15px;
+    padding: 10px;
+    border: 1px solid black;
 }

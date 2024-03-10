@@ -9,11 +9,15 @@ import { FormControl } from '@angular/forms';
 export class CreatePostComponent {
 
   body: string = '';
-
+  visible: boolean = false;
   onKeyUp() {
     console.log(this.body);
   }
   
+  showDialog() {
+    this.visible = true;
+  }
+
   getValue(value: string) {
     this.body = value;
   }

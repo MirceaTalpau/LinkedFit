@@ -1,6 +1,8 @@
-mat-toolbar{
+.navbar{
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
   width: 100%;
 }
 
@@ -51,3 +53,8 @@ mat-toolbar{
     border-radius: 100px;
     object-fit: cover; /* Ensure the image covers the button */
   }
+
+@media screen and (max-width: 600px){
+
+  
+}

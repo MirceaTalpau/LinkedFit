@@ -15,6 +15,10 @@ export class CreatePostComponent {
   fullScreenVisible: boolean = false;
   mediaItems: MediaItem[] = [];
   fullScreenItem: MediaItem | null = null;
+  
+  resetMediaItems(){
+    this.mediaItems = []
+  }
   onKeyUp() {
     console.log(this.body);
   }
@@ -45,6 +49,7 @@ export class CreatePostComponent {
     this.isDraggingOver = false;
     event.preventDefault(); // Prevents default behavior of the browser for drag and drop
     const files = event.dataTransfer.files; // Retrieves the files dropped onto the component
+    console.log(files);
     const fileQueue: File[] = []; // Queue to store dropped files
     // Add files to the queue
     for (let i = 0; i < files.length; i++) {
@@ -64,10 +69,16 @@ processFileQueue(fileQueue: File[]) {
     // Process the file asynchronously
     const reader = new FileReader();
     reader.onload = (e: any) => {
-        // Pushes a new MediaItem object to the mediaItems array, maintaining the order
-        this.mediaItems.push({ type: 'image', url: e.target.result, dateAdded: new Date() });
-        // Process the next file in the queue recursively
-        this.processFileQueue(fileQueue);
+      let mediaType = '';
+      if (file.type.startsWith('image/')) {
+          mediaType = 'image'; // Set media type to 'image' for image files
+      } else if (file.type.startsWith('video/')) {
+          mediaType = 'video/mp4'; // Set media type to 'video/mp4' for video files
+      }
+      // Pushes a new MediaItem object to the mediaItems array, maintaining the order
+      this.mediaItems.push({ type: mediaType, url: e.target.result, dateAdded: new Date() });
+      // Process the next file in the queue recursively
+      this.processFileQueue(fileQueue);
     };
     if (file.type.startsWith('image/')) {
         reader.readAsDataURL(file); // Reads the dropped image file as a data URL

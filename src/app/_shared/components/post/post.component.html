@@ -71,7 +71,7 @@
         </div>
     </mat-card-actions>
     <mat-card-footer *ngIf="showComments">
-        <app-searchbar [userId]="1" [iconSrc]="'s'" [placeholder]="'What\'s on your mind?'" (textEvent)="getCommentFormValue($event)" [button]="true" (buttonEvent)="onCommentSubmit()"></app-searchbar>
+        <app-searchbar [userId]="1" [iconSrc]="'s'" [placeholder]="'What\'s on your mind?'" [textArea]="true" (textEvent)="getCommentFormValue($event)" [button]="true" (buttonEvent)="onCommentSubmit()"></app-searchbar>
         <div>
           <app-comment *ngFor="let comment of comments" [comment]="comment" [replies]="comments"></app-comment>
         </div>

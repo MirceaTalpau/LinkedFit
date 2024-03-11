@@ -9,6 +9,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class SearchbarComponent implements OnInit {
   textGroup: FormGroup = new FormGroup({});
 
+  @Input() textArea: boolean = false;
   @Input() iconSrc: string = '';
   @Input() userId: number = 0;
   @Input() button = false;

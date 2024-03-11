@@ -9,6 +9,7 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import {ImageModule} from 'primeng/image';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DividerModule } from 'primeng/divider';
 import {GalleriaModule} from 'primeng/galleria';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -48,6 +49,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     FormsModule,
     ReactiveFormsModule,
     InputTextModule,
+    InputTextareaModule,
     RadioButtonModule,
     CalendarModule,
     DialogModule,

@@ -17,10 +17,11 @@
         { '960px': '50vw', '500px': '750vw' }"
         [style]="{ 'width': '50vw' , 'height':'70vh' }" 
         [contentStyle]="{ 'padding': '0' }"
-        (drop)="onDrop($event)" (dragover)="onDragOver($event)"  (dragleave)="onDragLeave($event)"
+        (drop)="allowDrop($event)" (dragover)="allowDrop($event)" (dragleave)="allowDrop($event)"
+        (onHide)="resetMediaItems()"
         >
     <div class="modal-container"
-        
+        (drop)="onDrop($event)" (dragover)="onDragOver($event)"  (dragleave)="onDragLeave($event)"
         [class.dragover]="isDraggingOver"
         >
         <div class="header-container">
@@ -42,23 +43,35 @@
             </div>
             <div class="media-container">
             <div *ngFor="let item of mediaItems" class="preview-container">
-                <ng-container *ngIf="item.type === 'image'">
-                    <img [src]="item.url" class="preview-image">
-                </ng-container>
-                <ng-container *ngIf="item.type === 'video'">
-                    <video controls class="preview-video">
-                        <source [src]="item.url" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </ng-container>
-                <div class="image-buttons">
-                    <button mat-icon-button (click)="removeItem(item)">
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                    <button mat-icon-button (click)="showFullScreen(item)">
-                        <mat-icon>fullscreen</mat-icon>
-                    </button>
+                <div *ngIf="item.type === 'image'">
+                    <div class="image-wrapper">
+                        <img [src]="item.url" class="preview-image" draggable="true" class="preview-image">
+                        <div class="image-buttons">
+                            <button mat-icon-button class="preview-action-button" (click)="removeItem(item)">
+                                <mat-icon style="color: black; font-size: 20px; text-align: center;">delete</mat-icon>
+                            </button>
+                            <button mat-icon-button class="preview-action-button" (click)="showFullScreen(item)">
+                                <mat-icon style="color: black; font-size: 20px; text-align: center;">fullscreen</mat-icon>
+                            </button>
+                        </div>
+                    </div>                
                 </div>
+                <ng-container *ngIf="item.type === 'video/mp4' || item.type === 'video'">
+                    <div class="video-wrapper">
+                        <video controls class="preview-video">
+                            <source [src]="item.url" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-buttons">
+                            <button mat-icon-button (click)="removeItem(item)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            <button mat-icon-button (click)="showFullScreen(item)">
+                                <mat-icon>fullscreen</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </ng-container>
             </div>
             </div>
         </div>
@@ -67,13 +80,20 @@
 </p-dialog>
 
 <p-dialog [(visible)]="fullScreenVisible" [modal]="true" [dismissableMask]="true" [responsive]="true"
-    [draggable]="false" [resizable]="false" [closeOnEscape]="true" [showHeader]="true"
-    [breakpoints]="{ '960px': '50vw', '500px': '750vw' }"
-    [style]="{ 'width': '100vw' , 'height':'100vh' }" 
+    [draggable]="false" [resizable]="false" [closeOnEscape]="true" [showHeader]="false"
+    [breakpoints]="{ '960px': '50vw', '500px': '50vw' }"
+    [style]="{ 'width': '50vw' , 'height':'70vh'}" 
     [contentStyle]="{ 'padding': '0' }">
-    <img *ngIf="fullScreenItem && fullScreenItem.type === 'image'" [src]="fullScreenItem.url" class="fullscreen-image">
-    <video *ngIf="fullScreenItem && fullScreenItem.type === 'video'" controls class="fullscreen-video">
-        <source [src]="fullScreenItem.url" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+    <div class="fullscreen-container">
+        <div class="close-icon" (click)="fullScreenVisible = false">
+            <button mat-button class="fullscreen-close-button">
+                <mat-icon style="color:#fff;">close</mat-icon>
+            </button>
+        </div>
+        <img *ngIf="fullScreenItem && fullScreenItem.type === 'image'" [src]="fullScreenItem.url" class="fullscreen-image">
+        <video *ngIf="fullScreenItem && fullScreenItem.type === 'video/mp4'" controls class="fullscreen-video">
+            <source [src]="fullScreenItem.url" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
 </p-dialog>

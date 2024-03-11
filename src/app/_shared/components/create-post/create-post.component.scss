@@ -110,23 +110,22 @@
 
 .media-container{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     width: 100%;
     border: 1px solid green;
     margin-bottom: 10px;
 }
 
 .preview-container {
-    flex: 0 0 calc(20% - 10px); /* Adjust width to accommodate five images in a row */
-    max-width: calc(20% - 10px); /* Set maximum width for each preview container */
-    margin-right: 10px; /* Add margin between preview containers */
-    margin-bottom: 10px; /* Add margin below each row of images */
-    box-sizing: border-box; /* Ensure that padding and border are included in the width calculation */
+    display: flex;
+    flex-direction: row;
+    width: 33.33%;
 }
 
 .preview-image{
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 200px;
     border-radius: 15px;
     margin-right: 10px;
     border: 2px solid pink;

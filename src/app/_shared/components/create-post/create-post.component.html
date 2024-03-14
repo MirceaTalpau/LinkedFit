@@ -26,10 +26,9 @@
         >
         <div class="header-container">
             <div class="title">Create Post</div>
-            <div class="close-icon" (click)="visible = false">
-                <i class="fa fa-times" aria-hidden="true"></i>
-                <button mat-button class="close-button"></button>
-            </div>
+            <button mat-button class="close-button" (click)="this.visible=false">
+                <mat-icon style="color:black;">close</mat-icon>
+            </button>
         </div>
         <div class="types-container">
             <button mat-button class="button" (click)="showDialog()">Photo/Video</button>
@@ -39,7 +38,7 @@
         <div class="body-container">
             <div class="user-icon-container">
                 <app-user-icon class="icon"></app-user-icon>
-                <div class="user-name">Geani</div>
+                <div class="user-name">John Doe</div>
             </div>
             <div class="text-area-container">
                 <textarea pInputTextarea class="text-area" placeholder="What's on your mind?"></textarea>
@@ -67,16 +66,19 @@
                         </video>
                         <div class="video-buttons">
                             <button mat-icon-button (click)="removeItem(item)">
-                                <mat-icon>delete</mat-icon>
+                                <mat-icon style="color: black; font-size: 20px; text-align: center;">delete</mat-icon>
                             </button>
                             <button mat-icon-button (click)="showFullScreen(item)">
-                                <mat-icon>fullscreen</mat-icon>
+                                <mat-icon style="color: black; font-size: 20px; text-align: center;">fullscreen</mat-icon>
                             </button>
                         </div>
                     </div>
                 </ng-container>
             </div>
             </div>
+        </div>
+        <div class="footer-container">
+            <button mat-button class="button" (click)="this.visible=false">Post</button>
         </div>
     </div>
     continua implementarea

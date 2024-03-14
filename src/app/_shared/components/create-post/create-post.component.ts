@@ -8,14 +8,16 @@ import { MediaItem } from 'src/app/_core/models/shared/MediaItemInterface';
   styleUrls: ['./create-post.component.scss']
 })
 export class CreatePostComponent {
-
+  normalPost : boolean = true;
+  recipePost : boolean = false;
+  progressPost : boolean = false;
   isDraggingOver: boolean = false;
   body: string = '';
   visible: boolean = true;
   fullScreenVisible: boolean = false;
   mediaItems: MediaItem[] = [];
   fullScreenItem: MediaItem | null = null;
-  
+
   resetMediaItems(){
     this.mediaItems = []
   }
@@ -23,7 +25,24 @@ export class CreatePostComponent {
     console.log(this.body);
   }
   
-  showDialog() {
+  showDialog(type: string) {
+    switch (type) {
+      case 'normal':
+        this.normalPost = true;
+        this.recipePost = false;
+        this.progressPost = false;
+        break;
+      case 'recipe':
+        this.normalPost = false;
+        this.recipePost = true;
+        this.progressPost = false;
+        break;
+      case 'progress':
+        this.normalPost = false;
+        this.recipePost = false;
+        this.progressPost = true;
+        break;
+    }
     this.visible = true;
   }
 

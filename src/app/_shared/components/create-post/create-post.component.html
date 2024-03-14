@@ -20,7 +20,8 @@
         (drop)="allowDrop($event)" (dragover)="allowDrop($event)" (dragleave)="allowDrop($event)"
         (onHide)="resetMediaItems()"
         >
-    <div class="modal-container"
+        <!-- NORMAL POST -->
+    <div class="modal-container" *ngIf="normalPost"
         (drop)="onDrop($event)" (dragover)="onDragOver($event)"  (dragleave)="onDragLeave($event)"
         [class.dragover]="isDraggingOver"
         >
@@ -79,6 +80,26 @@
         </div>
         <div class="footer-container">
             <button mat-button class="footer-button" (click)="this.visible=false">Post</button>
+        </div>
+    </div>
+    <!-- RECIPE POST -->
+    <div class="modal-container" *ngIf="recipePost">
+        <div class="header-container">
+            <div class="title">Create Post</div>
+            <button mat-button class="close-button" (click)="this.visible=false">
+                <mat-icon style="color:black;">close</mat-icon>
+            </button>
+        </div>
+        <div class="types-container">
+            <button mat-button class="button" [class.active]="normalPost" (click)="showDialog('normal')">Photo/Video</button>
+            <button mat-button class="button" [class.active]="recipePost" (click)="showDialog('recipe')">Recipe</button>
+            <button mat-button class="button" [class.active]="progressPost" (click)="showDialog('progress')">Progress</button>
+        </div>
+        <div class="body-container">
+            <div class="user-icon-container">
+                <app-user-icon class="icon"></app-user-icon>
+                <div class="user-name">John Doe</div>
+            </div>
         </div>
     </div>
 </p-dialog>

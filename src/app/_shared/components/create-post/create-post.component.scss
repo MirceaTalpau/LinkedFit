@@ -84,12 +84,12 @@
     width: 100%;
     margin-bottom: 10px;
     align-items: center;
-    border: 2px solid red;
 }
 
 .user-icon-container{
     display: flex;
-    border: 1px solid black;
+    justify-content: flex-start;
+    padding-left: 5%;
     width: 100%;
 }
 
@@ -104,8 +104,6 @@
     flex-direction: column;
     width: 100%;
     height: 70vh;
-    border: 1px solid blue;
-
 }
 
 .media-container{
@@ -113,13 +111,11 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
-    border: 1px solid green;
     margin-bottom: 10px;
 }
 
 .preview-container {
-    display: flex;
-    flex-direction: row;
+
     width: 33.33%;
     position: relative;
 }
@@ -128,7 +124,6 @@
     width: 100%;
     height: 200px;
     border-radius: 15px;
-    margin-right: 10px;
     border: 2px solid pink;
 }
 
@@ -141,12 +136,16 @@
 
 }
 
+.image-wrapper{
+    margin: 0;
+}
+
 .image-buttons,
 .video-buttons,
 .image-buttons mat-icon {
     position: absolute;
     top: 0;
-    right: 0;
+    right: 10%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -192,5 +191,26 @@
     color: #fff;
     z-index: 100;
     cursor: pointer;
+}
+
+.text-area{
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    padding: 10px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+    resize: none;
+    margin-bottom: 10px;
+}
+
+.text-area:focus{
+    box-shadow: none;
+    border: 0 none #fff;
+    outline: none !important;
+    outline-style: dashed;
+    outline-color: red;
 }
 

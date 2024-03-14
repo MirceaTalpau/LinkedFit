@@ -41,11 +41,14 @@
                 <app-user-icon class="icon"></app-user-icon>
                 <div class="user-name">Geani</div>
             </div>
+            <div class="text-area-container">
+                <textarea pInputTextarea class="text-area" placeholder="What's on your mind?"></textarea>
+            </div>
             <div class="media-container">
             <div *ngFor="let item of mediaItems" class="preview-container">
                 <div *ngIf="item.type === 'image'">
                     <div class="image-wrapper">
-                        <img [src]="item.url" class="preview-image" draggable="true" class="preview-image">
+                        <img [src]="item.url" class="preview-image" class="preview-image">
                         <div class="image-buttons">
                             <button mat-icon-button class="preview-action-button" (click)="removeItem(item)">
                                 <mat-icon style="color: black; font-size: 20px; text-align: center;">delete</mat-icon>

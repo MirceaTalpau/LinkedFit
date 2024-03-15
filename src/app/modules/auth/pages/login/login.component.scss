@@ -1,3 +1,71 @@
+// .container{
+//     width: 100%;
+//     height: 100%;
+//     margin: 0;
+//     padding: 0;
+//     background-color:	 #f2f2f2;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+// }
+// .login-form{
+//     width: 100%;
+//     max-width: 500px;
+//     height: 400px;
+//     display: flex;
+//     flex-direction: column;
+//     flex-wrap: wrap;
+//     align-items: center;
+//     justify-content: center;
+//     padding: 20px;
+//     background-color: #fff;
+//     border-radius: 10px;
+//     box-shadow: 0 0 10px rgba(0,0,0,0.3);
+// }
+// .password{
+//     padding-top: 10px;
+// }
+// .submit{
+//     margin-top: 20px;
+//     border-radius: 15px;
+// }
+
+// a{
+//     padding-top: 25px;
+//     text-decoration: none;
+// }
+// .create-acc{
+//     margin-top: 30px;
+//     margin-bottom: 15px;
+//     border-radius: 15px;
+//     background-color: green;
+// }
+
+// .button-container{
+//     display: flex;
+//     justify-content: flex-end;
+// }
+// .m-button{
+//     margin-left: 10px;
+// }
+
+// .error-message{
+//     color: red;
+//     font-size: 12px;
+//     margin-top: 5px;
+//     margin-bottom: 0;
+//     text-align: center;
+// }
+
+// @media screen and (max-width: 500px){
+//     .login-form{
+//         width: 100%;
+//         height: 100%;
+//         border-radius: 0;
+//     }
+// }
+
+
 .container{
     width: 100%;
     height: 100%;
@@ -7,61 +75,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow-x: hidden;
 }
-.login-form{
-    width: 100%;
-    max-width: 500px;
-    height: 400px;
+
+.form-container{
+    width: 50%;
+    height: 50%;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-}
-.password{
-    padding-top: 10px;
-}
-.submit{
-    margin-top: 20px;
-    border-radius: 15px;
 }
 
-a{
-    padding-top: 25px;
-    text-decoration: none;
+.example-full-width{
+    width: 70%;
 }
-.create-acc{
-    margin-top: 30px;
-    margin-bottom: 15px;
-    border-radius: 15px;
-    background-color: green;
-}
-
-.button-container{
-    display: flex;
-    justify-content: flex-end;
-}
-.m-button{
-    margin-left: 10px;
-}
-
-.error-message{
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
-    margin-bottom: 0;
-    text-align: center;
-}
-
-@media screen and (max-width: 500px){
-    .login-form{
-        width: 100%;
-        height: 100%;
-        border-radius: 0;
-    }
-}
-

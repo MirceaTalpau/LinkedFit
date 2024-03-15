@@ -22,8 +22,8 @@ export class CreatePostComponent implements OnInit{
   }
 
   recipeForm !: FormGroup;
-  normalPost : boolean = true;
-  recipePost : boolean = false;
+  normalPost : boolean = false;
+  recipePost : boolean = true;
   progressPost : boolean = false;
   isDraggingOver: boolean = false;
   body: string = '';

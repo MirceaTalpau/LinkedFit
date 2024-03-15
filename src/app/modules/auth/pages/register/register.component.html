@@ -54,8 +54,8 @@
             <div *ngIf="error">There was an error creating your account!</div>
         </div>
         <div class="flex justify-content-center">
-            <p-button label="Back" [rounded]="true" (onClick)="redirect()" class="back"></p-button>
-            <p-button label="Register" [disabled]="!this.registerForm.valid" [rounded]="true" (onClick)="onSubmit()" class="submit"></p-button>
+            <button pButton label="Back" (click)="redirect()" class="back"></button>
+            <button pButton label="Register" [disabled]="!this.registerForm.valid" (click)="onSubmit()" class="submit"></button>
         </div>
         <p-dialog header="Success!" [(visible)]="modalVisible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false" [closable]="false" >
             <p class="m-0">

@@ -102,8 +102,12 @@
             </div>
             <div class="recipe-form-container">
                 <form [formGroup]="recipeForm">
-                    <label>Name</label>
-                    <input pInputText type="text" formControlName="name">
+                    <div class="recipe-name-form-container">
+                        <span class="p-float-label">
+                            <input pInputText type="text" formControlName="name" class="recipe-name-form" required>
+                            <label>Name</label>
+                        </span>
+                    </div>
                     <!-- Other static fields -->
                     
                     <h3>Ingredients</h3>

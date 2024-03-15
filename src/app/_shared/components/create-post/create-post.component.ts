@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MediaItem } from 'src/app/_core/models/shared/MediaItemInterface';
 
 @Component({
@@ -7,7 +7,21 @@ import { MediaItem } from 'src/app/_core/models/shared/MediaItemInterface';
   templateUrl: './create-post.component.html',
   styleUrls: ['./create-post.component.scss']
 })
-export class CreatePostComponent {
+export class CreatePostComponent implements OnInit{
+
+  constructor(private fb: FormBuilder) { }
+
+  ngOnInit(): void{
+    this.recipeForm = this.fb.group({
+      name: [''],
+      description: [''],
+      cookingTime: [''],
+      servings: [''],
+      ingredients: this.fb.array([]),
+    });
+  }
+
+  recipeForm !: FormGroup;
   normalPost : boolean = true;
   recipePost : boolean = false;
   progressPost : boolean = false;
@@ -17,6 +31,22 @@ export class CreatePostComponent {
   fullScreenVisible: boolean = false;
   mediaItems: MediaItem[] = [];
   fullScreenItem: MediaItem | null = null;
+
+
+  get ingredientForms() {
+    return this.recipeForm.get('ingredients') as FormArray;
+  }
+
+  addIngredient() {
+    this.ingredientForms.push(this.fb.group({
+      name: [''],
+      quantity: ['']
+    }));
+  }
+
+  deleteIngredient(index: number) {
+    this.ingredientForms.removeAt(index);
+  }
 
   resetMediaItems(){
     this.mediaItems = []

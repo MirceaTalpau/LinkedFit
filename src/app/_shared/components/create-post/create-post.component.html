@@ -1,7 +1,7 @@
 <div class="container">
     <div class="top-container">
         <app-user-icon class="icon"></app-user-icon>
-        <div class="create-post">What's on your mind?</div>
+        <div class="create-post" (click)="showDialog('normal')">What's on your mind?</div>
     </div>
     <hr style="width: 100%;margin: 5px;">
     <div class="button-container">
@@ -99,6 +99,25 @@
             <div class="user-icon-container">
                 <app-user-icon class="icon"></app-user-icon>
                 <div class="user-name">John Doe</div>
+            </div>
+            <div class="recipe-form-container">
+                <form [formGroup]="recipeForm">
+                    <label>Name</label>
+                    <input pInputText type="text" formControlName="name">
+                    <!-- Other static fields -->
+                    
+                    <h3>Ingredients</h3>
+                    <div formArrayName="ingredients">
+                      <div *ngFor="let ingredient of ingredientForms.controls; let i = index">
+                        <div [formGroupName]="i">
+                          <input type="text" formControlName="name" placeholder="Name">
+                          <input type="text" formControlName="quantity" placeholder="Quantity">
+                          <button type="button" (click)="deleteIngredient(i)">Remove</button>
+                        </div>
+                      </div>
+                    </div>
+                    <button type="button" (click)="addIngredient()">Add Ingredient</button>
+                  </form>
             </div>
         </div>
     </div>

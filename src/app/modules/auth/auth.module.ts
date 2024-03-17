@@ -17,6 +17,7 @@ import { ChangePasswordComponent } from './pages/change-password/change-password
 import { SharedModule } from 'src/app/_shared/shared.module';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {MatIconModule} from '@angular/material/icon';
     CalendarModule,
     DialogModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatInputModule
   ],
   providers: [
     

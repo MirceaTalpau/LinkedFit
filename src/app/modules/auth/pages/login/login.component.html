@@ -33,4 +33,30 @@
             <button pButton label="Cancel" (click)="cancel()" class="m-button"></button>
         </div>
     </p-dialog>
+</div> -->
+
+<div class="container">
+    <div class="form-container">
+        <form [formGroup]="loginInfo" class="login-form">
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+                <mat-icon matPrefix>people</mat-icon>
+                <mat-error *ngIf="loginInfo.get('email')?.hasError('required')">
+                    Email is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="loginInfo.get('email')?.hasError('email') && !loginInfo.get('email')?.hasError('required')">
+                    Please enter a valid email address
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput formControlName="password" placeholder="Password">
+                <mat-icon matPrefix>lock</mat-icon>
+                <mat-error *ngIf="loginInfo.get('password')?.hasError('required')">
+                    Password is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </div>
 </div>

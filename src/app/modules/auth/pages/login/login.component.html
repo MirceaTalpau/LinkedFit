@@ -1,21 +1,28 @@
-<div class="container">
+<div class="container-login">
     <form [formGroup]="loginInfo" class="login-form">
-        <div class="email">
+        <div class="email" [class.invalid]="loginInfo.get('email')?.invalid && loginInfo.get('email')?.touched">
             <span class="p-input-icon-left">
             <i class="pi pi-user"></i>
             <input type="text" pInputText formControlName="email" placeholder="Email" />
             </span>
+            <mat-error [ngClass]="{ 'hidden': loginInfo.get('email')?.valid || !loginInfo.get('email')?.touched }">
+                <span class="error-message" *ngIf="loginInfo.get('email')?.errors?.['required']">Email is required.</span>
+                <span class="error-message" *ngIf="loginInfo.get('email')?.errors?.['email']">Invalid email format.</span>
+            </mat-error>
         </div>
-        <div class="password">
+        <div class="password" [class.invalid]="password?.invalid && password?.touched">
             <span class="p-input-icon-left">
                 <i class="pi pi-lock"></i>
                 <input type="password" pInputText formControlName = "password" placeholder="Password"/>
             </span>
+            <mat-error [ngClass]="{ 'hidden': loginInfo.get('password')?.valid || !loginInfo.get('password')?.touched }">
+                <span class="error-message" *ngIf="loginInfo.get('password')?.errors?.['required']">Password is required.</span>
+            </mat-error>
         </div>
         <div *ngIf="logError"class="error-message">Mail and password are incorrect!</div>
-        <button pButton label="Log In" (click)="onSubmit()" class="submit"></button>
+        <button pButton (click)="onSubmit()" class="submit">Login</button>
         <a href="/auth/forgot-password">Forgot password?</a>
-        <button pButton label="Create new account" class="create-acc" severity="success" (click)="register()"></button>
+        <button pButton  class="create-acc" severity="success" (click)="register()">Create new account</button>
     </form>
     <p-dialog *ngIf="emailError" header="Email not verified!" [(visible)]="!modalVisible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false" [closable]="false" >
         <p class="m-0">

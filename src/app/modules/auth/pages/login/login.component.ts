@@ -1,8 +1,6 @@
-import { first } from 'rxjs';
 import { AuthService } from './../../../../_core/api/auth.service';
-import { Component, OnInit, Injectable, NgZone, AfterViewChecked } from '@angular/core';
-import { FormControl, FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
-import { LoginInfo } from 'src/app/_core/models/auth/LoginInfo';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 
@@ -14,9 +12,14 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit{
 
+  constructor(private fb: FormBuilder,private auth:AuthService,private router:Router){}
+
     ngOnInit() {
-      
-  };
+      this.loginInfo = this.fb.group({
+        email: ['', { validators: [Validators.required, Validators.email], updateOn: 'blur' }],
+        password: ['', { validators: [Validators.required], updateOn: 'blur' }]
+      })
+    };
 
   onSignIn(): void {
     
@@ -26,17 +29,22 @@ export class LoginComponent implements OnInit{
   modalVisible: boolean = false;
   user: any;
   loggedIn: any;
-  loginInfo = this.fb.group({
-    email: new FormControl([''],[Validators.required,Validators.email]),
-    password: new FormControl([''],[Validators.required,Validators.minLength(6)])
-  })
+  loginInfo!: FormGroup; 
 
   register(){
     this.router.navigate(['/auth/register']);
   }
-  constructor(private fb: UntypedFormBuilder,private auth:AuthService,private router:Router){}
+
+  get email(){
+    return this.loginInfo.get('email');
+  }
+
+  get password(){
+    return this.loginInfo.get('password');
+  }
+
   resendEmail(){
-    this.auth.resendEmailConfirmation(this.loginInfo.get('email')?.value).subscribe({
+    this.auth.resendEmailConfirmation(this.email?.value).subscribe({
       next: (res) =>{
         console.log(res)
         this.modalVisible = false;
@@ -56,13 +64,12 @@ export class LoginComponent implements OnInit{
   onSubmit(){
     if(this.loginInfo.valid){
     const login={
-      email: this.loginInfo.get('email')?.value || "",
-      password: this.loginInfo.get('password')?.value || ""
+      email: this.email?.value || "",
+      password: this.password?.value || ""
     }
       this.auth.login(login).subscribe({
         next: (res) =>{
           console.log(res.token)
-          console.log("ceva")
         },
         error: (error) => {
           console.log(error.error)

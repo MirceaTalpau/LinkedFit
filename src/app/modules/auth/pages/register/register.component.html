@@ -5,16 +5,20 @@
         </div>
         <div class="name">     
             <div class="fname">
-                <span class="p-float-label">
-                    <input type="text" pInputText id="firstName" formControlName="firstName" />
-                    <label for="firstName">First Name</label>
+                <span class="p-float-label" >
+                    <input  [class.invalid]="firstName?.invalid && firstName?.touched" pInputText type="text" pInputText id="first-name" formControlName="firstName" />
+                    <label>First Name</label>
                 </span>
-                
+                <mat-error *ngIf="firstName?.invalid && firstName?.touched">
+                    <ng-container *ngFor="let error of errorMessages.firstName">
+                        <span class="error-message" *ngIf="firstName?.hasError(error.type)">{{ error.message }}</span>
+                    </ng-container>
+                </mat-error>
             </div>
             <div class="lname">
                 <span class="p-float-label">
-                    <input type="text" pInputText id="lastName" formControlName="lastName" />
-                    <label for="lastName">Last Name</label>
+                    <input pInputText type="text" pInputText id="last-name" formControlName="lastName" />
+                    <label>Last Name</label>
                 </span>
             </div>
         </div>
@@ -22,32 +26,32 @@
             <div class="email">
                 <span class="p-float-label">
                     <input type="email" pInputText id="email" formControlName="email" />
-                    <label for="email">Email</label>
+                    <label>Email</label>
                 </span>
             </div>
             <div class="password">
                 <span class="p-float-label">
                     <input type="password" pInputText id="password" formControlName="password" />
-                    <label for="password">Password</label>
+                    <label>Password</label>
                 </span>
             </div>
         </div>
         <div class="birthday">
             <span class="p-float-label">
                 <p-calendar formControlName="birthday" id="birthday" [showIcon]="false"></p-calendar>
-                <label for="birthday">Birthday</label>
+                <label >Birthday</label>
             </span>
         </div>
           
         <div class="gender">
             <div class="flex align-items-center">
                 <p-radioButton name="gender" value="M" formControlName="gender" inputId="gender1"></p-radioButton>
-                <label for="gender1" class="ml-2">Male</label>
+                <label class="ml-2">Male</label>
             </div>
             
             <div class="flex align-items-center">
                 <p-radioButton name="gender" value="F" formControlName="gender" inputId="gender2"></p-radioButton>
-                <label for="gender2" class="ml-2">Female</label>
+                <label class="ml-2">Female</label>
             </div>
         </div>
         <div class="error">

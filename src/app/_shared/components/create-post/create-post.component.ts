@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MediaItem } from 'src/app/_core/models/shared/MediaItemInterface';
 
 @Component({
@@ -27,7 +27,7 @@ export class CreatePostComponent implements OnInit{
   progressPost : boolean = false;
   isDraggingOver: boolean = false;
   body: string = '';
-  visible: boolean = true;
+  visible: boolean = false;
   fullScreenVisible: boolean = false;
   mediaItems: MediaItem[] = [];
   fullScreenItem: MediaItem | null = null;

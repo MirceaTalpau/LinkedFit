@@ -12,27 +12,53 @@
 }
 
 .title{
-    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }   
 
 .register-form{
-    width: 450px;
-    height: 500px;
+    width: 550px;
+    height: 600px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
-    padding: 20px;
+    padding: 0 20px 20px 20px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    margin: 0;
+    padding: 0;
+}
 
+.error-message{
+    color: red;
+    background-color: #fff;
+    font-size: 10px;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+}
+
+.invalid{
+    border: 1px solid red;
 }
 
 .fname{
+    width: 40%;
+}
+
+#first-name{
     width: 100%;
-    margin-right: 10px;
+    box-shadow: none;
+}
+
+.lname{
+    width: 40%;
+}
+
+#last-name{
+    width: 100%;
 }
 
 .error{
@@ -43,9 +69,8 @@
 
 .name {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     width: 100%;
-    margin-bottom: 25px; /* Optional: Add margin between name fields and the rest */
 }
 
 

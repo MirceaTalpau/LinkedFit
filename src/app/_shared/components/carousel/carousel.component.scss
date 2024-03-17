@@ -1,5 +1,5 @@
 /* carousel.component.css */
-.wrapper{
+.carousel-wrapper{
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -21,7 +21,7 @@
 .carousel video {
     display: block;
     border-radius: 15px;
-    width: 100%;
+    width: 500px;
     height: 400px;
     box-shadow: 0 8px 16px #dce1e1;
 
@@ -29,7 +29,7 @@
 
 .carousel img.image-active{
     display: block;
-    width: 100%;
+    width: 500px;
     height: 400px;
 
 }
@@ -46,9 +46,8 @@
 }
 
 .dot{
-    cursor: pointer;
-    height: 13px;
-    width: 13px;
+    height: 9px;
+    width: 9px;
     margin: 0 5px;
     background-color: #fff;
     border-radius: 50%;
@@ -123,4 +122,53 @@
     position: relative;
     top: 0;
     background-color: transparent;
+}
+
+.fade-left{
+    animation-name: fade-left;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fade-left {
+    from {opacity: .4; transform: translateX(-100%);}
+    to {opacity: 1; transform: translateX(0);}
+}
+
+.fade-right{
+    animation-name: fade-right;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fade-right {
+    from {opacity: .4; transform: translateX(100%);}
+    to {opacity: 1; transform: translateX(0);}
+}
+
+@media screen and (max-width: 500px) {
+    .carousel img,
+    .carousel video {
+        width: 300px;
+        height: 300px;
+    }
+
+    .carousel img.image-active{
+        width: 300px;
+        height: 300px;
+    }
+    
+}
+
+@media screen and (min-width: 501px) and (max-width: 1024px){
+    .carousel img,
+    .carousel video {
+        width: 500px;
+        height: 300px;
+    }
+
+    .carousel img.image-active{
+        width: 500px;
+        height: 300px;
+    }
 }

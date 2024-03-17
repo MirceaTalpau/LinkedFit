@@ -1,6 +1,6 @@
 import { first } from 'rxjs';
 import { Component } from '@angular/core';
-import { FormControl, UntypedFormBuilder, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/_core/api/auth.service';
 import { Router } from '@angular/router';
 
@@ -11,24 +11,44 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
 
+  constructor(private fb: FormBuilder, private auth:AuthService,private router:Router) { }
 
-  constructor(private fb: UntypedFormBuilder, private auth:AuthService,private router:Router) { }
-
+  ngOnInit(): void {
+    this.registerForm = this.fb.group(
+    {
+      firstName: ['',{validators:[Validators.required,Validators.minLength(3)],updateOn: 'blur'}],
+      lastName: new FormControl('',[Validators.required,Validators.minLength(3)]),
+      email: new FormControl('',[Validators.required,Validators.email]),
+      password: new FormControl('',[Validators.required,Validators.minLength(6)]),
+      birthday: new FormControl('',[Validators.required]),
+      gender: ['']
+    },
+    {
+      validators: this.validAge()
+    }
+    )
+  }
+  registerForm !: FormGroup;
   date:any;
   modalVisible :boolean = false;
   error: boolean = false;
-  registerForm = this.fb.group({
-    firstName: new FormControl('',[Validators.required,Validators.minLength(3)]),
-    lastName: new FormControl('',[Validators.required,Validators.minLength(3)]),
-    email: new FormControl('',[Validators.required,Validators.email]),
-    password: new FormControl('',[Validators.required,Validators.minLength(6)]),
-    birthday: new FormControl('',[Validators.required]),
-    gender: ['']
-  },
-  {
-    validators: this.validAge()
+
+  get firstName() {
+     return this.registerForm.get('firstName'); 
   }
-  )
+  get lastName() {
+    return this.registerForm.get('lastName'); 
+  }
+  get email() {
+    return this.registerForm.get('email'); 
+  }
+  get password() {
+    return this.registerForm.get('password'); 
+  }
+  get birthday() {
+    return this.registerForm.get('birthday'); 
+  }
+
 
   errorMessages = {
     firstName: [
@@ -46,6 +66,10 @@ export class RegisterComponent {
     password: [
       { type: 'required', message: 'Password is required!' },
       { type: 'minlength', message: 'Password must be at least 6 characters long!' }
+    ],
+    birthday:[
+      { type: 'required', message: 'Birthday is required!' },
+      { type: 'validAge', message: 'You must be at least 18 years old!'}
     ]
   }
 

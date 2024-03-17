@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="carousel-wrapper">
   <div class="carousel" *ngIf="items && items.length > 0">
     <div *ngFor="let item of items; let i = index" [hidden]="currentIndex !== i">
       <div class="slide" *ngIf="item.type === 'image'">
@@ -17,7 +17,8 @@
       <div class="dot-container" *ngIf="items.length > 1">
         <span *ngFor="let dot of dots; let i=index"
             class="dot"
-            [ngClass]="{'active': currentIndex === dot}"
+            [ngClass]="{'active': (currentIndex % 3 === i && (currentIndex == 0 || currentIndex == items.length - 1)) || (i == 1 && currentIndex > 0 && currentIndex < items.length - 1)}"
+            [class]="pressedNext && currentIndex <= items.length - 2 && currentIndex != 1 ? 'fade-right' : pressedPrev && currentIndex >= 1 && currentIndex != items.length - 2 ? 'fade-left' : ''"
         >
         </span>
       </div>

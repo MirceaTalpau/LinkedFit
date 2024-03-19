@@ -24,6 +24,17 @@ export class LoginComponent implements OnInit{
   onSignIn(): void {
     
   }
+
+
+  validationErrorMessages = {
+    email: [
+      { type: 'required', message: 'Email is required!' },
+      { type: 'email', message: 'Please enter a valid email address!' }
+    ],
+    password: [
+      { type: 'required', message: 'Password is required!' }
+    ]
+  };
   logError: boolean = false;
   emailError: boolean = false;
   modalVisible: boolean = false;

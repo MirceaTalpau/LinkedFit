@@ -16,17 +16,20 @@ export class RegisterComponent {
   ngOnInit(): void {
     this.registerForm = this.fb.group(
     {
-      firstName: ['',{validators:[Validators.required,Validators.minLength(3)],updateOn: 'blur'}],
-      lastName: new FormControl('',[Validators.required,Validators.minLength(3)]),
-      email: new FormControl('',[Validators.required,Validators.email]),
-      password: new FormControl('',[Validators.required,Validators.minLength(6)]),
-      birthday: new FormControl('',[Validators.required]),
-      gender: ['']
+      firstName: ['',{validators:[Validators.required,Validators.minLength(3)] , updateOn: 'blur'}],
+      lastName: ['',{validators:[Validators.required,Validators.minLength(3)] , updateOn: 'blur'}],
+      email: ['',{validators:[Validators.required,Validators.email], updateOn: 'blur'}],
+      password: ['',{validators:[Validators.required,Validators.minLength(6)] , updateOn: 'blur'}],
+      confirmPassword: ['', {validators:[Validators.required,Validators.minLength(6)] , updateOn: 'blur'}],
+      birthday: ['',{validators:[Validators.required] , updateOn: 'blur'}],
+      gender: ['',{validators:[Validators.required] , updateOn: 'blur'}]
     },
     {
-      validators: this.validAge()
+      validators: [this.validAge(), this.validatePassword()],
+      updateOn: 'submit'
     }
     )
+
   }
   registerForm !: FormGroup;
   date:any;
@@ -45,6 +48,9 @@ export class RegisterComponent {
   get password() {
     return this.registerForm.get('password'); 
   }
+  get confirmPassword() {
+    return this.registerForm.get('confirmPassword'); 
+  }
   get birthday() {
     return this.registerForm.get('birthday'); 
   }
@@ -53,19 +59,25 @@ export class RegisterComponent {
   errorMessages = {
     firstName: [
       { type: 'required', message: 'First name is required!' },
-      { type: 'minlength', message: 'First name must be at least 3 characters long!' }
+      { type: 'minlength', message: 'First name must be at least 3 characters long!' },
     ],
     lastName: [
       { type: 'required', message: 'Last name is required!' },
-      { type: 'minlength', message: 'Last name must be at least 3 characters long!' }
+      { type: 'minlength', message: 'Last name must be at least 3 characters long!' },
     ],
     email: [
       { type: 'required', message: 'Email is required!' },
+      { type: 'email', message: 'This email is not valid!'},
       { type: 'minlength', message: 'This email is not valid!' }
     ],
     password: [
       { type: 'required', message: 'Password is required!' },
       { type: 'minlength', message: 'Password must be at least 6 characters long!' }
+    ],
+    confirmPassword: [
+      { type: 'required', message: 'Confirm password is required!' },
+      { type: 'minlength', message: 'Password must be at least 6 characters long!' },
+      { type: 'passwordMismatch', message: 'Passwords do not match!' }
     ],
     birthday:[
       { type: 'required', message: 'Birthday is required!' },
@@ -73,14 +85,33 @@ export class RegisterComponent {
     ]
   }
 
-  validAge():ValidatorFn{
+  getCurrentDate()
+  {
+    this.date = new Date();
+    return this.date;
+  }
+
+  validAge() :ValidatorFn{
     return (formGroup) => {
       const birthday = formGroup.get('birthday')?.value;
       const date = new Date(birthday);
       const today = new Date();
       const age = today.getFullYear() - date.getFullYear();
       if(age < 18){
+        formGroup.get('birthday')?.setErrors({validAge: true});
         return {validAge: true};
+      }
+      return null;
+    }
+  }
+
+  validatePassword() :ValidatorFn{
+    return (formGroup) => {
+      const password = formGroup.get('password')?.value;
+      const confirmPassword = formGroup.get('confirmPassword')?.value;
+      if(password !== confirmPassword){
+        formGroup.get('confirmPassword')?.setErrors({passwordMismatch: true});
+        return {passwordMismatch: true};
       }
       return null;
     }

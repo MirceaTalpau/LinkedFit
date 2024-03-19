@@ -13,7 +13,7 @@ export class ForgotPasswordComponent {
   
   found: boolean = true;
   sent: boolean = false;
-  errorMessage : string = "";
+  errorMessage : string = "We did not found an account associated with this email or email is not verified!";
 
   resetInfo = this.fb.group({
     email: [''],
@@ -31,11 +31,11 @@ export class ForgotPasswordComponent {
         console.log(error);
         if(error.error =="Email is not verified!"){
           this.found = false;
-          this.errorMessage = "We did not found an email or email is not verified!";
+          this.errorMessage = "We did not found an account associated with this email or email is not verified!";
         }
         else{
           this.found = false;
-          this.errorMessage = "We did not found an email!";
+          this.errorMessage = "We did not found an account associated with this email!";
         }
         
       }

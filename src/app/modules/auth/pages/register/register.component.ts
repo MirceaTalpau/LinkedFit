@@ -80,7 +80,6 @@ export class RegisterComponent {
       { type: 'passwordMismatch', message: 'Passwords do not match!' }
     ],
     birthday:[
-      { type: 'required', message: 'Birthday is required!' },
       { type: 'validAge', message: 'You must be at least 18 years old!'}
     ]
   }

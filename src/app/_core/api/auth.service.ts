@@ -2,7 +2,6 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginInfo } from '../models/auth/LoginInfo';
-import { ResetPassword } from '../models/auth/ResetPassword';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +31,7 @@ export class AuthService {
   resendEmailConfirmation(email: string): Observable<any>{
     return this.http.get(`${this.API}/account/resend/email/${email}`);
   }
-  resetPassword(token:string, newPassword:ResetPassword): Observable<any>{
+  resetPassword(token:string, newPassword:any): Observable<any>{
     return this.http.post(`${this.API}/account/confirm/password/${token}`, newPassword);
   }
   verifyResetPasswordToken(token:string): Observable<any>{

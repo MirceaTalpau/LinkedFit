@@ -15,9 +15,14 @@ export class CreatePostComponent implements OnInit{
     this.recipeForm = this.fb.group({
       name: [''],
       description: [''],
+      instructions: [''],
       cookingTime: [''],
       servings: [''],
       ingredients: this.fb.array([]),
+      calories: [''],
+      protein: [''],
+      carbs: [''],
+      fat: ['']
     });
   }
 
@@ -27,7 +32,7 @@ export class CreatePostComponent implements OnInit{
   progressPost : boolean = false;
   isDraggingOver: boolean = false;
   body: string = '';
-  visible: boolean = false;
+  visible: boolean = true;
   fullScreenVisible: boolean = false;
   mediaItems: MediaItem[] = [];
   fullScreenItem: MediaItem | null = null;
@@ -146,6 +151,11 @@ processFileQueue(fileQueue: File[]) {
   showFullScreen(item: MediaItem) {
     this.fullScreenItem = item;
     this.fullScreenVisible = true;
+  }
+
+  submit(): void {
+    if(this.normalPost)
+    console.log(this.recipeForm.value);
   }
 
 }

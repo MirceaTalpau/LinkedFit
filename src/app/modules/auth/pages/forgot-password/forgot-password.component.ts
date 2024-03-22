@@ -25,6 +25,7 @@ export class ForgotPasswordComponent {
     this.authService.forgotPassword(this.resetInfo.get("email")?.value).subscribe({
       next: (res) => {
         console.log(res);
+        this.found = true;
         this.sent = true;
       },
       error: (error) => {

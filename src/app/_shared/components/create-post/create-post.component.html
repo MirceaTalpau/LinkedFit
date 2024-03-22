@@ -1,4 +1,4 @@
-<div class="container">
+<div class="create-post-container">
     <div class="top-container">
         <app-user-icon class="icon"></app-user-icon>
         <div class="create-post" (click)="showDialog('normal')">What's on your mind?</div>
@@ -14,8 +14,9 @@
 <p-dialog [(visible)]="visible" [modal]="true" [dismissableMask]="true" [responsive]="true"
     [draggable]="false" [resizable]="false" [closeOnEscape]="true" [showHeader]="false"
     [breakpoints]="
-        { '960px': '50vw', '500px': '75vw' }"
-        [style]="{ 'width': '50vw' , 'height':'60vh' , 'overflow': 'hidden'}" 
+        { '960px': '50vw', '400px': '100vw', '500px': '100vw', '600px': '90vw', '700px': '90vw', '800px': '90vw', '900px': '90vw', '1000px': '90vw', '1100px': '80vw' }"
+        
+        [style]="{ 'width': '40vw' , 'height':'60vh' , 'overflow': 'hidden'}" 
         [contentStyle]="{ 'padding': '0' }"
         (drop)="allowDrop($event)" (dragover)="allowDrop($event)" (dragleave)="allowDrop($event)"
         (onHide)="resetMediaItems()"
@@ -27,8 +28,8 @@
         >
         <div class="header-container">
             <div class="title">Create Post</div>
-            <button mat-button class="close-button" (click)="this.visible=false">
-                <mat-icon style="color:black;">close</mat-icon>
+            <button pButton class="close-button" (click)="this.visible=false">
+                <i class="material-icons">close</i>
             </button>
         </div>
         <div class="types-container">
@@ -42,7 +43,7 @@
                 <div class="user-name">John Doe</div>
             </div>
             <div class="text-area-container">
-                <textarea pInputTextarea class="text-area" placeholder="What's on your mind?"></textarea>
+                <textarea pInputTextarea [(ngModel)]="body" class="text-area" placeholder="What's on your mind?"></textarea>
             </div>
             <div class="media-container">
             <div *ngFor="let item of mediaItems" class="preview-container">
@@ -79,15 +80,15 @@
             </div>
         </div>
         <div class="footer-container">
-            <button mat-button class="footer-button" (click)="this.visible=false">Post</button>
+            <button mat-button class="footer-button" [disabled]="this.body===''" (click)="this.visible=false">Post</button>
         </div>
     </div>
     <!-- RECIPE POST -->
     <div class="modal-container" *ngIf="recipePost">
         <div class="header-container">
             <div class="title">Create Post</div>
-            <button mat-button class="close-button" (click)="this.visible=false">
-                <mat-icon style="color:black;">close</mat-icon>
+            <button pButton class="close-button" (click)="this.visible=false">
+                <i class="material-icons">close</i>
             </button>
         </div>
         <div class="types-container">
@@ -100,29 +101,68 @@
                 <app-user-icon class="icon"></app-user-icon>
                 <div class="user-name">John Doe</div>
             </div>
+            <div class="text-area-container">
+                <textarea pInputTextarea [(ngModel)]="body" class="text-area" placeholder="What's on your mind?"></textarea>
+            </div>
             <div class="recipe-form-container">
                 <form [formGroup]="recipeForm">
-                    <div class="recipe-name-form-container">
-                        <span class="p-float-label">
-                            <input pInputText type="text" formControlName="name" class="recipe-name-form" required>
-                            <label>Name</label>
-                        </span>
-                    </div>
-                    <!-- Other static fields -->
-                    
-                    <h3>Ingredients</h3>
-                    <div formArrayName="ingredients">
-                      <div *ngFor="let ingredient of ingredientForms.controls; let i = index">
-                        <div [formGroupName]="i">
-                          <input type="text" formControlName="name" placeholder="Name">
-                          <input type="text" formControlName="quantity" placeholder="Quantity">
-                          <button type="button" (click)="deleteIngredient(i)">Remove</button>
+                    <div class="inputs-container">
+                        <div class="left-container">
+                            <div class="recipe-name-form-container">
+                                <span>
+                                    <input placeholder="Name" pInputText type="text" formControlName="name" class="recipe-name-form" required>
+                                </span>
+                            </div>
+                            <div class="recipe-cook-time-form-container">
+                                <span>
+                                    <input placeholder="Cooking Time(min)" pInputText type="text" formControlName="cookingTime" class="recipe-cook-time-form" required>
+                                </span>
+                            </div>
+                            <div class="recipe-description-form-container">
+                                <span>
+                                    <textarea placeholder="Description" pInputTextarea type="text" formControlName="description" class="recipe-description-form" required></textarea>
+                                </span>
+                            </div>
+                            <div class="recipe-instructions-form-container">
+                                <span>
+                                    <textarea placeholder="Instructions" pInputTextarea type="text" formControlName="instructions" class="recipe-instructions-form" required></textarea>
+                                </span>
+                            </div>
                         </div>
-                      </div>
+
+                        <!-- Other static fields -->
+                        <div class="right-container">
+                            <div class="ingredients-button">
+                                <h3>Ingredients</h3>
+                                <button pButton type="button" class="add-ingredient-button" (click)="addIngredient()">
+                                    <i class="material-icons">add</i>
+                                </button>
+                            </div>
+                            <div formArrayName="ingredients" class="ingredients-container">
+                                <div *ngFor="let ingredient of ingredientForms.controls; let i = index" class="ingredient-row">
+                                    <div [formGroupName]="i" class="ingredient-row-inner">
+                                        <input pInputText type="text" class="ingredient-name" formControlName="name" placeholder="Name">
+                                        <input pInputText type="text" class="ingredient-quantity" placeholder="Quantity">
+                                        <input pInputText type="text" class="ingredient-unit" placeholder="Unit">
+                                        <button pButton class="delete-ingredient-button" (click)="deleteIngredient(i)">
+                                            <i class="material-icons" style="color: red; ;">delete</i>
+                                    </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                    <div class="nutrition-value">
+                        <input pInputText type="text" class="calories-input" placeholder="Calories" formControlName="calories">
+                        <input pInputText type="text" class="protein-input" placeholder="Protein" formControlName="protein">
+                        <input pInputText type="text" class="carbs-input" placeholder="Carbs" formControlName="carbs">
+                        <input pInputText type="text" class="fat-input" placeholder="Fat" formControlName="fat">
                     </div>
-                    <button type="button" (click)="addIngredient()">Add Ingredient</button>
                   </form>
             </div>
+        </div>
+        <div class="footer-container">
+            <button mat-button class="footer-button" [disabled]="this.body===''" (click)="this.visible=false">Post</button>
         </div>
     </div>
 </p-dialog>

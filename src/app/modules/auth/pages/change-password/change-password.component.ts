@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, UntypedFormBuilder, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, UntypedFormBuilder, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/_core/api/auth.service';
+
+interface ChangePassword{
+  password: string;
+  confirmPassword: string;
+}
 
 @Component({
   selector: 'app-change-password',
@@ -10,7 +15,7 @@ import { AuthService } from 'src/app/_core/api/auth.service';
 })
 export class ChangePasswordComponent implements  OnInit {
 
-  constructor(private authService:AuthService,private fb:UntypedFormBuilder,private route:ActivatedRoute,private router:Router) { }
+  constructor(private authService:AuthService,private fb:FormBuilder,private route:ActivatedRoute,private router:Router) {}
 
   ngOnInit(): void {
     const token = this.route.snapshot.paramMap.get('token');
@@ -34,7 +39,7 @@ export class ChangePasswordComponent implements  OnInit {
   }
 
   errorMessages = {
-    newPassword: [
+    password: [
       { type: 'required', message: 'Password is required!' },
       { type: 'minlength', message: 'Password must be at least 6 characters long!' }
     ],
@@ -47,27 +52,34 @@ export class ChangePasswordComponent implements  OnInit {
 
   validToken : boolean = false;
   changed : boolean = false;
-  newPasswordForm !: FormGroup;
+  newPasswordForm : FormGroup = new FormGroup({});
+  newPassword !: ChangePassword ;
 
   get password() { return this.newPasswordForm.get('password'); }
   get confirmPassword() { return this.newPasswordForm.get('confirmPassword'); }
 
-  validatePassword() :ValidatorFn{
+  validatePassword(): ValidatorFn {
     return (formGroup) => {
-      const password = this.password?.value;
-      const confirmPassword = this.confirmPassword?.value;
-      if(password !== confirmPassword){
-        confirmPassword?.setErrors({passwordMismatch: true});
-        return {passwordMismatch: true};
+      const password = formGroup.get('password')?.value;
+      const confirmPassword = formGroup.get('confirmPassword')?.value;
+      
+      if (password !== confirmPassword) {
+        formGroup.get('confirmPassword')?.setErrors({ passwordMismatch: true });
+        return { passwordMismatch: true };
+      } else {
+        formGroup.get('confirmPassword')?.setErrors(null); // Clear the error if passwords match
+        return null;
       }
-      return null;
-    }
+    };
   }
 
    onSubmit(){
-
-    if(this.newPasswordForm.valid){
-      this.authService.resetPassword(this.route.snapshot.paramMap.get('token')!,this.password?.value).subscribe(
+    this.newPassword = {
+        password: this.password?.value,
+        confirmPassword: this.confirmPassword?.value
+      }
+    if (this.newPasswordForm.valid) {
+      this.authService.resetPassword(this.route.snapshot.paramMap.get('token')!, this.newPassword).subscribe(
         {
           next: (res) => {
             this.changed = true;

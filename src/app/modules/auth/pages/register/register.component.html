@@ -67,8 +67,8 @@
                 </mat-error>
             </div>
             <div class="birthday">
-                <span [ngClass]="{ 'invalid': !birthday?.invalid && !birthday?.touched }" class="p-float-label" style="border-radius: 15px; width: 100%;">
-                    <p-calendar [style]="{'width':'100%'}" class="birthday-form" [class.invalid]="birthday?.invalid && birthday?.touched || birthday?.dirty" formControlName="birthday" id="birthday" icon="pi pi-calendar"  [showButtonBar]='true'></p-calendar>
+                <span [ngClass]="{ 'invalid': !birthday?.invalid && !birthday?.touched}" class="p-float-label" style="border-radius: 15px; width: 100%;">
+                    <p-calendar [style]="{'width':'100%'}" class="birthday-form" [class.invalid]="birthday?.invalid && birthday?.touched" formControlName="birthday" id="birthday" icon="pi pi-calendar"  [showButtonBar]='true'></p-calendar>
                     <label>Birthday</label>
                 </span>
                 <mat-error class="error-container-register" [ngClass]="{ 'hidden': !birthday?.invalid || !birthday?.touched }">

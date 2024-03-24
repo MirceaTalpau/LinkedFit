@@ -4,6 +4,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
+import { InputNumberModule } from 'primeng/inputnumber';
 import { CarouselModule } from 'primeng/carousel';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
@@ -28,6 +29,8 @@ import { UserIconComponent } from './components/user-icon/user-icon.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { ReadMorePipe } from './pipes/read-more.pipe';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { IntegerOnlyDirective } from './directives/integer-only.directive';
+import {NgxImageCompressService} from 'ngx-image-compress';
 
 
 
@@ -41,7 +44,8 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     UserIconComponent,
     SearchbarComponent,
     ReadMorePipe,
-    CarouselComponent
+    CarouselComponent,
+    IntegerOnlyDirective
   ],
   imports: [
     CommonModule,
@@ -49,6 +53,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     FormsModule,
     ReactiveFormsModule,
     InputTextModule,
+    InputNumberModule,
     InputTextareaModule,
     RadioButtonModule,
     CalendarModule,
@@ -75,6 +80,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     UserIconComponent,
     SearchbarComponent,
     CarouselComponent
-  ]
+  ],
+  providers: [NgxImageCompressService]
 })
 export class SharedModule { }

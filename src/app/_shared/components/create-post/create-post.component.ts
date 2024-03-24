@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgxImageCompressService } from 'ngx-image-compress';
 import { MediaItem } from 'src/app/_core/models/shared/MediaItemInterface';
 
 @Component({
@@ -9,15 +10,15 @@ import { MediaItem } from 'src/app/_core/models/shared/MediaItemInterface';
 })
 export class CreatePostComponent implements OnInit{
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private imageCompress: NgxImageCompressService) { }
 
   ngOnInit(): void{
     this.recipeForm = this.fb.group({
-      name: [''],
-      description: [''],
-      instructions: [''],
-      cookingTime: [''],
-      servings: [''],
+      name: ['', {Validators: [Validators.required, Validators.minLength(2)], updateOn: 'blur'}],
+      description: ['', {Validators: [Validators.required], updateOn: 'blur'}],
+      instructions: ['', {Validators: [Validators.required], updateOn: 'blur'}],
+      cookingTime: ['', {Validators: [Validators.required], updateOn: 'blur'}],
+      servings: ['', {Validators: [Validators.required], updateOn: 'blur'}],
       ingredients: this.fb.array([]),
       calories: [''],
       protein: [''],
@@ -109,6 +110,7 @@ export class CreatePostComponent implements OnInit{
     for (let i = 0; i < files.length; i++) {
         fileQueue.push(files[i]);
     }
+    
     // Process files in the queue
     this.processFileQueue(fileQueue);
 }
@@ -126,6 +128,9 @@ processFileQueue(fileQueue: File[]) {
       let mediaType = '';
       if (file.type.startsWith('image/')) {
           mediaType = 'image'; // Set media type to 'image' for image files
+          this.compressImage(file).then(compressedFile => {
+            this.handleCompressedFile(compressedFile.name);
+          });
       } else if (file.type.startsWith('video/')) {
           mediaType = 'video/mp4'; // Set media type to 'video/mp4' for video files
       }
@@ -134,11 +139,45 @@ processFileQueue(fileQueue: File[]) {
       // Process the next file in the queue recursively
       this.processFileQueue(fileQueue);
     };
+
+
+
     if (file.type.startsWith('image/')) {
         reader.readAsDataURL(file); // Reads the dropped image file as a data URL
     } else if (file.type.startsWith('video/')) {
         reader.readAsDataURL(file); // Reads the dropped video file as a data URL
     }
+}
+
+async compressImage(file: File): Promise<File> {
+  return new Promise<File>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (event: any) => {
+          const base64String = event.target.result;
+          console.log('Original image:', file);
+          this.imageCompress.compressFile(base64String, -1, 50, 50).then(
+              result => {
+                  // Create a new File object from the compressed image data
+                  const compressedFile = new File([result], file.name, { type: file.type });
+                  console.log('Compressed image:', compressedFile);
+                  resolve(compressedFile);
+              },
+              error => {
+                  console.error('Failed to compress image:', error);
+                  reject(error);
+              }
+          );
+      };
+      reader.onerror = (error) => {
+          console.error('Failed to read image file:', error);
+          reject(error);
+      };
+      reader.readAsDataURL(file);
+  });
+}
+
+handleCompressedFile(file: string):void {
+  console.log(file);
 }
 
   removeItem(item: MediaItem) {
@@ -157,5 +196,9 @@ processFileQueue(fileQueue: File[]) {
     if(this.normalPost)
     console.log(this.recipeForm.value);
   }
+  
+
+
+  
 
 }

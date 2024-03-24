@@ -14,7 +14,7 @@
 <p-dialog [(visible)]="visible" [modal]="true" [dismissableMask]="true" [responsive]="true"
     [draggable]="false" [resizable]="false" [closeOnEscape]="true" [showHeader]="false"
     [breakpoints]="
-        { '960px': '50vw', '400px': '100vw', '500px': '100vw', '600px': '90vw', '700px': '90vw', '800px': '90vw', '900px': '90vw', '1000px': '90vw', '1100px': '80vw' }"
+        { '960px': '100vw','300px':'100vw', '400px': '100vw', '500px': '100vw', '600px': '100vw', '700px': '100vw', '800px': '90vw', '900px': '90vw', '1000px': '90vw', '1100px': '80vw' }"
         
         [style]="{ 'width': '40vw' , 'height':'60vh' , 'overflow': 'hidden'}" 
         [contentStyle]="{ 'padding': '0' }"
@@ -46,37 +46,37 @@
                 <textarea pInputTextarea [(ngModel)]="body" class="text-area" placeholder="What's on your mind?"></textarea>
             </div>
             <div class="media-container">
-            <div *ngFor="let item of mediaItems" class="preview-container">
-                <div *ngIf="item.type === 'image'">
-                    <div class="image-wrapper">
-                        <img [src]="item.url" class="preview-image" class="preview-image">
-                        <div class="image-buttons">
-                            <button mat-icon-button class="preview-action-button" (click)="removeItem(item)">
-                                <mat-icon style="color: black; font-size: 20px; text-align: center;">delete</mat-icon>
-                            </button>
-                            <button mat-icon-button class="preview-action-button" (click)="showFullScreen(item)">
-                                <mat-icon style="color: black; font-size: 20px; text-align: center;">fullscreen</mat-icon>
-                            </button>
-                        </div>
-                    </div>                
-                </div>
-                <ng-container *ngIf="item.type === 'video/mp4' || item.type === 'video'">
-                    <div class="video-wrapper">
-                        <video controls class="preview-video">
-                            <source [src]="item.url" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <div class="video-buttons">
-                            <button mat-icon-button (click)="removeItem(item)">
-                                <mat-icon style="color: black; font-size: 20px; text-align: center;">delete</mat-icon>
-                            </button>
-                            <button mat-icon-button (click)="showFullScreen(item)">
-                                <mat-icon style="color: black; font-size: 20px; text-align: center;">fullscreen</mat-icon>
-                            </button>
-                        </div>
+                <div *ngFor="let item of mediaItems" class="preview-container">
+                    <div *ngIf="item.type === 'image'">
+                        <div class="image-wrapper">
+                            <img [src]="item.url" class="preview-image" class="preview-image">
+                            <div class="image-buttons">
+                                <button mat-icon-button class="preview-action-button" (click)="removeItem(item)">
+                                    <mat-icon style="color: black; font-size: 20px; text-align: center;">delete</mat-icon>
+                                </button>
+                                <button mat-icon-button class="preview-action-button" (click)="showFullScreen(item)">
+                                    <mat-icon style="color: black; font-size: 20px; text-align: center;">fullscreen</mat-icon>
+                                </button>
+                            </div>
+                        </div>                
                     </div>
-                </ng-container>
-            </div>
+                    <ng-container *ngIf="item.type === 'video/mp4' || item.type === 'video'">
+                        <div class="video-wrapper">
+                            <video controls class="preview-video">
+                                <source [src]="item.url" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-buttons">
+                                <button mat-icon-button (click)="removeItem(item)">
+                                    <mat-icon style="color: black; font-size: 20px; text-align: center;">delete</mat-icon>
+                                </button>
+                                <button mat-icon-button (click)="showFullScreen(item)">
+                                    <mat-icon style="color: black; font-size: 20px; text-align: center;">fullscreen</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
             </div>
         </div>
         <div class="footer-container">
@@ -108,14 +108,19 @@
                 <form [formGroup]="recipeForm">
                     <div class="inputs-container">
                         <div class="left-container">
-                            <div class="recipe-name-form-container">
+                            <div  class="recipe-name-form-container">
                                 <span>
                                     <input placeholder="Name" pInputText type="text" formControlName="name" class="recipe-name-form" required>
                                 </span>
                             </div>
                             <div class="recipe-cook-time-form-container">
                                 <span>
-                                    <input placeholder="Cooking Time(min)" pInputText type="text" formControlName="cookingTime" class="recipe-cook-time-form" required>
+                                    <input placeholder="Cooking Time(min)" pInputText pKeyFilter='int' type="text" formControlName="cookingTime" class="recipe-cook-time-form" required appIntegerOnly>
+                                </span>
+                            </div>
+                            <div class="recipe-servings-form-container">
+                                <span>
+                                    <input placeholder="Servings" pInputNumber type="text" formControlName="servings" class="recipe-servings-form" required appIntegerOnly>
                                 </span>
                             </div>
                             <div class="recipe-description-form-container">

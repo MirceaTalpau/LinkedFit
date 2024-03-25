@@ -28,7 +28,7 @@
         >
         <div class="header-container">
             <div class="title">Create Post</div>
-            <button pButton class="close-button" (click)="this.visible=false">
+            <button pButton class="close-button" (click)="closeModal()">
                 <i class="material-icons">close</i>
             </button>
         </div>
@@ -87,7 +87,7 @@
     <div class="modal-container" *ngIf="recipePost">
         <div class="header-container">
             <div class="title">Create Post</div>
-            <button pButton class="close-button" (click)="this.visible=false">
+            <button pButton class="close-button" (click)="closeModal()">
                 <i class="material-icons">close</i>
             </button>
         </div>
@@ -108,6 +108,7 @@
                 <form [formGroup]="recipeForm">
                     <div class="inputs-container">
                         <div class="left-container">
+                            <h3 style="padding-left: 25px;">Recipe</h3>
                             <div  class="recipe-name-form-container">
                                 <span>
                                     <input placeholder="Name" pInputText type="text" formControlName="name" class="recipe-name-form" required>
@@ -115,12 +116,12 @@
                             </div>
                             <div class="recipe-cook-time-form-container">
                                 <span>
-                                    <input placeholder="Cooking Time(min)" pInputText pKeyFilter='int' type="text" formControlName="cookingTime" class="recipe-cook-time-form" required appIntegerOnly>
+                                    <input placeholder="Cooking Time(min)" pInputText  type="text" formControlName="cookingTime" class="recipe-cook-time-form" required appIntegerOnly>
                                 </span>
                             </div>
                             <div class="recipe-servings-form-container">
                                 <span>
-                                    <input placeholder="Servings" pInputNumber type="text" formControlName="servings" class="recipe-servings-form" required appIntegerOnly>
+                                    <input placeholder="Servings" pInputText type="text" formControlName="servings" class="recipe-servings-form" required appIntegerOnly>
                                 </span>
                             </div>
                             <div class="recipe-description-form-container">
@@ -168,6 +169,36 @@
         </div>
         <div class="footer-container">
             <button mat-button class="footer-button" [disabled]="this.body===''" (click)="this.visible=false">Post</button>
+        </div>
+    </div>
+
+    <!-- PROGRESS POST -->
+
+    <div class="modal-container" *ngIf="progressPost">
+        <div class="header-container">
+            <div class="title">Create Post</div>
+            <button pButton class="close-button" (click)="closeModal()">
+                <i class="material-icons">close</i>
+            </button>
+        </div>
+        <div class="types-container">
+            <button mat-button class="button" [class.active]="normalPost" (click)="showDialog('normal')">Photo/Video</button>
+            <button mat-button class="button" [class.active]="recipePost" (click)="showDialog('recipe')">Recipe</button>
+            <button mat-button class="button" [class.active]="progressPost" (click)="showDialog('progress')">Progress</button>
+        </div>
+        <div class="body-container">
+            <div class="user-icon-container">
+                <app-user-icon class="icon"></app-user-icon>
+                <div class="user-name">John Doe</div>
+                <div class="card flex justify-content-center" style="z-index: 9999;">
+                    <p-toast></p-toast>
+                    <p-menu #menu [model]="postVisibilityOptions" [popup]="true"></p-menu>
+                    <button pButton type="button" (click)="menu.toggle($event)" icon="pi pi-bars" label="Show"></button>
+                </div>
+                </div>
+            <div class="text-area-container">
+                <textarea pInputTextarea [(ngModel)]="body" class="text-area" placeholder="What's on your mind?"></textarea>
+            </div>
         </div>
     </div>
 </p-dialog>

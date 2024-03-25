@@ -19,8 +19,9 @@
             <mat-error [ngClass]="{ 'hidden': loginInfo.get('password')?.valid || !loginInfo.get('password')?.touched }">
                 <span class="error-message" >Password is required.</span>
             </mat-error>
+            <div *ngIf="logError"class="error-message">Mail and password are incorrect!</div>
+
         </div>
-        <div *ngIf="logError"class="error-message">Mail and password are incorrect!</div>
         <a href="/auth/forgot-password" class="forgot-password">Forgot password?</a>
         <button pButton (click)="onSubmit()" class="submit">Login</button>
         <div style="padding-top: 10px; font-size: 14px;">Don't have an account?</div>

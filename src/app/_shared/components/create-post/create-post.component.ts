@@ -1,46 +1,88 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxImageCompressService } from 'ngx-image-compress';
+import { MenuItem, MessageService } from 'primeng/api';
 import { MediaItem } from 'src/app/_core/models/shared/MediaItemInterface';
 
 @Component({
   selector: 'app-create-post',
   templateUrl: './create-post.component.html',
-  styleUrls: ['./create-post.component.scss']
+  styleUrls: ['./create-post.component.scss'],
+  providers: [MessageService]
 })
 export class CreatePostComponent implements OnInit{
 
-  constructor(private fb: FormBuilder, private imageCompress: NgxImageCompressService) { }
+  constructor(private fb: FormBuilder,
+    private imageCompress: NgxImageCompressService,
+    private messageService: MessageService) { }
 
   ngOnInit(): void{
-    this.recipeForm = this.fb.group({
-      name: ['', {Validators: [Validators.required, Validators.minLength(2)], updateOn: 'blur'}],
-      description: ['', {Validators: [Validators.required], updateOn: 'blur'}],
-      instructions: ['', {Validators: [Validators.required], updateOn: 'blur'}],
-      cookingTime: ['', {Validators: [Validators.required], updateOn: 'blur'}],
-      servings: ['', {Validators: [Validators.required], updateOn: 'blur'}],
-      ingredients: this.fb.array([]),
-      calories: [''],
-      protein: [''],
-      carbs: [''],
-      fat: ['']
-    });
+    this.createForm();
+    this.postVisibilityOptions= [
+      // {label: 'Public', icon: 'pi pi-globe', command: () => {
+      //     this.postVisibility = 'Public';
+      // }},
+      // {label: 'Friends', icon: 'pi pi-users', command: () => {
+      //     this.postVisibility = 'Friends';
+      // }},
+      // {label: 'Only Me', icon: 'pi pi-lock', command: () => {
+      //     this.postVisibility = 'Only Me';
+      // }}
+      {
+        label: 'Public',
+        items: [
+          {label: 'Public', icon: 'pi pi-globe', command: () => {
+            this.postVisibility = 'Public';
+          }},
+          {label: 'Friends', icon: 'pi pi-users', command: () => {
+            this.postVisibility = 'Friends';
+          }},
+          {label: 'Only Me', icon: 'pi pi-lock', command: () => {
+            this.postVisibility = 'Only Me';
+          }}
+        ]
+      }
+    ];
   }
 
   recipeForm !: FormGroup;
   normalPost : boolean = false;
-  recipePost : boolean = true;
-  progressPost : boolean = false;
+  recipePost : boolean = false;
+  progressPost : boolean = true;
   isDraggingOver: boolean = false;
   body: string = '';
   visible: boolean = true;
   fullScreenVisible: boolean = false;
   mediaItems: MediaItem[] = [];
   fullScreenItem: MediaItem | null = null;
+  postVisibilityOptions: MenuItem[] | undefined;
+  postVisibility: string = 'Public';
 
 
   get ingredientForms() {
     return this.recipeForm.get('ingredients') as FormArray;
+  }
+
+  createForm():void {
+    this.recipeForm = this.fb.group({
+      name: ['', {Validators: [Validators.required, Validators.minLength(2)], updateOn: 'blur'}],
+      description: ['', {Validators: [Validators.required], updateOn: 'blur'}],
+      instructions: ['', {Validators: [Validators.required], updateOn: 'blur'}],
+      cookingTime: ['', {Validators: [Validators.required], updateOn: 'blur'}],
+      servings: ['', {Validators: [Validators.required], updateOn: 'blur'}],
+      ingredients: this.fb.array([], Validators.required),
+      calories: ['', Validators.required],
+      protein: ['', Validators.required],
+      carbs: ['', Validators.required],
+      fat: ['', Validators.required]
+    });
+  }
+
+  closeModal():void {
+    this.visible = false;
+    this.body = '';
+    this.resetMediaItems();
+    this.recipeForm.reset();
   }
 
   addIngredient() {
@@ -197,6 +239,8 @@ handleCompressedFile(file: string):void {
     console.log(this.recipeForm.value);
   }
   
+
+//  POST VISIBILITY
 
 
   

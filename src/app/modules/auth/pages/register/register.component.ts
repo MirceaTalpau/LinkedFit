@@ -21,8 +21,8 @@ export class RegisterComponent {
       email: ['',{validators:[Validators.required,Validators.email], updateOn: 'blur'}],
       password: ['',{validators:[Validators.required,Validators.minLength(6)] , updateOn: 'blur'}],
       confirmPassword: ['', {validators:[Validators.required,Validators.minLength(6)] , updateOn: 'blur'}],
-      birthday: ['',{validators:[Validators.required] , updateOn: 'blur'}],
-      gender: ['',{validators:[Validators.required] , updateOn: 'blur'}]
+      birthday: ['',{validators:[Validators.required] , updateOn: 'change'}],
+      gender: ['',{validators:[Validators.required] , updateOn: 'change'}]
     },
     {
       validators: [this.validAge(), this.validatePassword()],

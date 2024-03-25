@@ -339,7 +339,6 @@ textarea{
 
 .recipe-description-form-container{
     width: 100%;
-    margin-bottom: 5px;
 }
 
 .recipe-description-form{
@@ -358,11 +357,22 @@ textarea{
     color: #000;
 }
 
+.recipe-instructions-form::placeholder,.recipe-description-form::placeholder,
+.recipe-name-form::placeholder,.recipe-cook-time-form::placeholder,
+.recipe-servings-form::placeholder,.calories-input::placeholder,
+.protein-input::placeholder,.carbs-input::placeholder,
+.fat-input::placeholder{
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+}
+
 .ingredients-container{
     width: 100%;
     max-height: 100%;
     display: flex;
     flex-direction: row;
+    align-items: flex-start;
     flex-wrap: wrap;
     overflow-y: auto;
 }
@@ -378,15 +388,21 @@ textarea{
 }
 
 .ingredient-name{
-    width: 50%;
+    font-size: 12px;
+    font-weight: 600;
+    width: 30%;
 }
 
 .ingredient-quantity{
-    width: 20%;
+    font-size: 12px;
+    font-weight: 600;
+    width: 30%;
 }
 
 .ingredient-unit{
-    width: 10%;
+    font-size: 12px;
+    font-weight: 600;
+    width: 20%;
 }
 
 .delete-ingredient-button{
@@ -445,5 +461,41 @@ textarea{
     align-items: center;
 }
 
+button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+
+@media screen and (min-width:400px) and (max-width: 1024px){
+    .recipe-form-container{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 10px;
+    }
+    
+    .inputs-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .left-container,
+    .right-container {
+        width: 100%; /* Adjust as needed */
+        max-height: 350px;
+    }
+    
+    .left-container {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .right-container {
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+}
 
 

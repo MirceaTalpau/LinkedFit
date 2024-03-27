@@ -1,48 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxImageCompressService } from 'ngx-image-compress';
-import { MenuItem, MessageService } from 'primeng/api';
+import { MenuItem, TreeNode } from 'primeng/api';
 import { MediaItem } from 'src/app/_core/models/shared/MediaItemInterface';
 
 @Component({
   selector: 'app-create-post',
   templateUrl: './create-post.component.html',
   styleUrls: ['./create-post.component.scss'],
-  providers: [MessageService]
+  providers: []
 })
 export class CreatePostComponent implements OnInit{
 
   constructor(private fb: FormBuilder,
-    private imageCompress: NgxImageCompressService,
-    private messageService: MessageService) { }
+    private imageCompress: NgxImageCompressService) { }
 
   ngOnInit(): void{
     this.createForm();
-    this.postVisibilityOptions= [
-      // {label: 'Public', icon: 'pi pi-globe', command: () => {
-      //     this.postVisibility = 'Public';
-      // }},
-      // {label: 'Friends', icon: 'pi pi-users', command: () => {
-      //     this.postVisibility = 'Friends';
-      // }},
-      // {label: 'Only Me', icon: 'pi pi-lock', command: () => {
-      //     this.postVisibility = 'Only Me';
-      // }}
-      {
-        label: 'Public',
-        items: [
-          {label: 'Public', icon: 'pi pi-globe', command: () => {
-            this.postVisibility = 'Public';
-          }},
-          {label: 'Friends', icon: 'pi pi-users', command: () => {
-            this.postVisibility = 'Friends';
-          }},
-          {label: 'Only Me', icon: 'pi pi-lock', command: () => {
-            this.postVisibility = 'Only Me';
-          }}
-        ]
-      }
-    ];
+    
   }
 
   recipeForm !: FormGroup;
@@ -55,8 +30,12 @@ export class CreatePostComponent implements OnInit{
   fullScreenVisible: boolean = false;
   mediaItems: MediaItem[] = [];
   fullScreenItem: MediaItem | null = null;
-  postVisibilityOptions: MenuItem[] | undefined;
   postVisibility: string = 'Public';
+  visibilityOptions = [
+    { label: 'Public', value: 'Public' },
+    { label: 'Friends', value: 'Friends' },
+    { label: 'Only Me', value: 'OnlyMe' }
+  ];
 
 
   get ingredientForms() {

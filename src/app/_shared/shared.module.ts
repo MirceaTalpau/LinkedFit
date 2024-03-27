@@ -31,8 +31,7 @@ import { ReadMorePipe } from './pipes/read-more.pipe';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { IntegerOnlyDirective } from './directives/integer-only.directive';
 import {NgxImageCompressService} from 'ngx-image-compress';
-import { MenuModule } from 'primeng/menu';
-import { ToastModule } from 'primeng/toast';
+import { TreeSelectModule } from 'primeng/treeselect';
 
 @NgModule({
   declarations: [
@@ -55,9 +54,8 @@ import { ToastModule } from 'primeng/toast';
     InputTextModule,
     InputNumberModule,
     InputTextareaModule,
-    MenuModule,
-    ToastModule,
     RadioButtonModule,
+    TreeSelectModule,
     CalendarModule,
     DialogModule,
     MatToolbarModule,

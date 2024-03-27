@@ -9,6 +9,7 @@
         <button mat-button class="button"  (click)="showDialog('recipe')">Recipe</button>
         <button mat-button class="button"  (click)="showDialog('progress')">Progress</button>
     </div>
+
 </div>
 
 <p-dialog [(visible)]="visible" [modal]="true" [dismissableMask]="true" [responsive]="true"
@@ -189,13 +190,14 @@
         <div class="body-container">
             <div class="user-icon-container">
                 <app-user-icon class="icon"></app-user-icon>
-                <div class="user-name">John Doe</div>
-                <div class="card flex justify-content-center" style="z-index: 9999;">
-                    <p-toast></p-toast>
-                    <p-menu #menu [model]="postVisibilityOptions" [popup]="true"></p-menu>
-                    <button pButton type="button" (click)="menu.toggle($event)" icon="pi pi-bars" label="Show"></button>
+                <div class="user-info">
+                    <div class="user-name">John Doe</div>
+                    <!-- <button pButton label="{{postVisibility}}" icon="pi pi-globe" class="visibility-button" (click)="closeModal()"></button> -->
+                    <a href="#" class="visibility-button" (click)="closeModal()">
+                        <i class="material-icons">public</i>Public
+                    </a>
                 </div>
-                </div>
+            </div>
             <div class="text-area-container">
                 <textarea pInputTextarea [(ngModel)]="body" class="text-area" placeholder="What's on your mind?"></textarea>
             </div>

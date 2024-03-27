@@ -118,10 +118,20 @@ textarea{
     width: 100%;
 }
 
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
 .user-name{
     font-size: 20px;
     font-weight: 600;
     margin-left: 10px;
+}
+
+.visibility-button{
+    display: flex;
+    justify-content: center;
 }
 
 .body-container{
@@ -465,7 +475,6 @@ button:focus {
     outline: none;
     box-shadow: none;
 }
-
 
 @media screen and (min-width:400px) and (max-width: 1024px){
     .recipe-form-container{
